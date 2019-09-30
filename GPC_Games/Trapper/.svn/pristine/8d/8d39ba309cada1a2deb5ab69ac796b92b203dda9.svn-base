@@ -1,0 +1,9 @@
+<!-- This file contains levels for the GPC game Trapper!  The file contains 2D array data -->
+
+<levels>
+	<stage number="1">
+		<row>0, 0, 0, 0</row>
+		<row>0, 0, 0, 0</row>
+		<row>0, 0, 0, 0</row>
+	</stage>
+</levels>

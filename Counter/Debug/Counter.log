@@ -1,0 +1,3 @@
+﻿  Counter.cpp
+c:\gamedev\_projects\counter\counter.cpp(16): warning C4305: '-=' : truncation from 'double' to 'float'
+  Counter.vcxproj -> C:\GameDev\_Projects\Counter\Debug\Counter.exe

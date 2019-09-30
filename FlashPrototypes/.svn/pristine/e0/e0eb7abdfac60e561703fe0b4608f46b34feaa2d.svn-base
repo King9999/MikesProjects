@@ -1,0 +1,167 @@
+﻿/* Towers of Hanoi test  **DUE APRIL 9 AT 8PM**
+
+-Have 3 vertical bars and 4 discs of increasing size
+-Move all 4 discs from the first bar to the 3rd bar
+-Can only move one disc at a time
+-Can only stack a disc if it's smaller than the one below it
+-Must have a solve button that plays the game and completes it with the minimum number of moves, which
+should be 15.
+*/
+
+package  
+{
+	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
+	import flash.ui.Keyboard;
+	import flash.events.Event;
+	import flash.display.DisplayObject;
+	import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	
+	
+	public class Main extends MovieClip
+	{
+		
+		const MAX_PEGS:uint = 3;
+		const MAX_DISKS:uint = 4;
+		const TARGET:uint = 2;	//the peg index# that 4 disks must be on to win the game
+		
+		var _diskSize:uint;		//size of disk. Cannot be more than 4
+		var _pegs:uint;			//number of pegs
+		var _numDisks:uint;		//number of disks
+		
+		
+		//Pegs. Using a vector of vectors, hope this doesn't get confusing.
+		var _peg:Vector.<Vector.<uint>> = new Vector.<Vector.<uint>>();
+		var _pegShape:Vector.<Shape> = new Vector.<Shape>(); 
+		
+		//Discs.
+		var _disc:Vector.<Shape> = new Vector.<Shape>();
+		
+				
+		//HUD elements
+		var _textFormat:TextFormat;
+		var _debugTextFormat:TextFormat;
+		var _instructionText:TextField;	//tells player what must be done
+		var _debugText:TextField;
+		var _debugWindow:Shape;			//used to show peg contents and number of turns
+		var _turnCount:uint = 1;			//number of turns.  Hidden from player.
+
+		public function Main() 
+		{
+						
+			_textFormat = new TextFormat();
+			_textFormat.size = 30;
+			_textFormat.bold = true;
+			_textFormat.font = "Calibri";
+			
+			_debugTextFormat = new TextFormat();
+			_debugTextFormat.size = 20;
+			//_debugTextFormat.bold = true;
+			_debugTextFormat.font = "Calibri";
+									
+			//instruction
+			_instructionText = new TextField();
+
+			_instructionText.textColor = 0x000000;
+			_instructionText.defaultTextFormat = _textFormat;
+			_instructionText.x = 100;
+			_instructionText.y = 50;
+			_instructionText.width = 800;
+			_instructionText.height = 150;
+			_instructionText.multiline = true;
+			_instructionText.wordWrap = true;
+			_instructionText.text = "Move the four discs to the 3rd peg." + 
+			"  You can only move the topmost disc, and cannot stack larger discs" +
+			" on top of smaller discs.";
+			
+			
+			
+			//Pegs
+			for (var i = 0; i < MAX_PEGS; i++)
+			{
+				_peg.push(new Vector.<uint>);
+				
+				//graphics
+				_pegShape.push(new Shape());
+				_pegShape[i].graphics.beginFill(0xE0A877);
+				_pegShape[i].graphics.drawRect(300 + (i * 250), 250, 30, 250);
+				_pegShape[i].graphics.endFill();
+				addChild(_pegShape[i]);
+			}
+			
+			//Discs
+			for (var j = 0; j < MAX_DISKS; j++)
+			{
+				/* Stack the discs on the first peg */
+				_peg[0].push(j+1);	//inserts numbers 1 to 4, representing disc size
+				
+				//create graphic representation of a disc
+				_disc.push(new Shape());
+				_disc[j].graphics.beginFill(0xff0000);
+				_disc[j].graphics.drawRect(200 - (j * 25), (j * 50) + 300, (j * 50) + 100, 50);
+				_disc[j].graphics.endFill();
+				addChild(_disc[j]);
+			}
+			
+			//debug window
+			_debugWindow = new Shape();
+			_debugWindow.graphics.beginFill(0x000000);
+			_debugWindow.graphics.drawRect(10, 600, 300, 150);
+			_debugWindow.graphics.endFill();
+			
+			//debug text
+			_debugText = new TextField();
+			_debugText.textColor = 0xffffff;
+			_debugText.defaultTextFormat = _debugTextFormat;
+			_debugText.x = 15;
+			_debugText.y = 600;
+			_debugText.width = 800;
+			_debugText.height = 150;
+			_debugText.multiline = true;
+			_debugText.wordWrap = true;
+			_debugText.text = "GAME STATUS\n" + 
+								"============\n" + 
+								"Peg 0: " + _peg[0] + "\n" +
+								"Peg 1: " + _peg[1] + "\n" +
+								"Peg 2: " + _peg[2] + "\n" +
+								"Turn: " + _turnCount;
+			
+	
+			//display all elements
+			addChild(_instructionText);
+			addChild(_debugWindow);
+			addChild(_debugText);
+			
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			//stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			stage.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		}
+		
+		//The game only uses a mouse to play
+		public function onMouseDown(event:MouseEvent):void
+		{
+			/*When ENTER is pressed, the game checks what was typed against
+			the target word.  If correct, the next word is selected.
+			Otherwise, the text box is cleared.*/
+			
+			switch (event)
+			{
+				case Keyboard.ENTER:
+					
+			}
+		}
+		
+		function onEnterFrame(event:Event):void
+		{
+			
+			
+		}
+
+	}
+	
+}

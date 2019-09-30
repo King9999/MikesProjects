@@ -1,0 +1,17 @@
+﻿/* This is the gameplay screen. From here, the game can be paused and exited back to the title screen. */
+
+package  
+{
+	import flash.display.MovieClip;
+	
+	public class GameScreen extends MovieClip
+	{
+
+		public function GameScreen() 
+		{
+			// constructor code
+		}
+
+	}
+	
+}

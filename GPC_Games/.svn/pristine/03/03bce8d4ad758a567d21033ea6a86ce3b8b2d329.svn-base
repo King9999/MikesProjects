@@ -1,0 +1,138 @@
+﻿/* The Ghost has the ability to "scare" instead of attack. Scaring the enemy causes them to drop more 
+candy than normal. The downside is that scaring has a longer cooldown than attacking.  Targets affected
+by the action drops 2x the amount of candy.
+
+STATS
+move speed = normal (1x move speed)
+candy drop amt = normal (5 pieces of candy per hit)
+cooldown = high (10 seconds / 600 frames) */
+
+package 
+{
+	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.events.Event;
+	
+	public class Ghost extends Player
+	{
+		
+
+		public function Ghost() 
+		{
+			
+			//addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			_playerName = "Ghost";
+			_candyAmount = 0;
+			_cooldown = 600;		//10 seconds to recharge scare attack
+			_dropAmount = 5;
+			_vx = 0;
+			_vy = 0;
+			_moveSpeed = 1;
+			
+			//event listeners
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		}
+		
+		/* Keyboard controls. The player can move up, down, left and right.  The player can perform
+		an action by pressing the Spacebar. */
+		private function onKeyDown(event:KeyboardEvent):void
+		{
+			//Walk left
+			if (event.keyCode == Keyboard.LEFT)
+			{
+				
+				_vx = -3;
+			}
+				
+			//Walk right
+			if (event.keyCode == Keyboard.RIGHT)
+			{
+				
+				_vx = 3;
+			}
+								
+			//Walk down
+			if (event.keyCode == Keyboard.DOWN)
+			{
+				
+				_vy = 3;
+			}
+			
+			//Walk up
+			if (event.keyCode == Keyboard.UP)
+			{
+				
+				_vy = -3;
+			}
+			
+			//Action button
+			if (event.keyCode == Keyboard.SPACE)
+			{
+				//perform the player-specific action
+				UseAction();
+			}
+		}
+		
+		/* This function checks when a key is released */
+		private function onKeyUp(event:KeyboardEvent):void
+		{
+			if(event.keyCode == Keyboard.LEFT || event.keyCode == Keyboard.RIGHT)
+			{
+				_vx = 0;
+			}
+					
+			if (event.keyCode == Keyboard.SPACE)
+			{
+				//Nothing should happen. Once the space is pressed, the action should go into cooldown
+			}
+				
+			if (event.keyCode == Keyboard.DOWN || event.keyCode == Keyboard.UP)
+			{
+				_vy = 0;
+			}
+		}
+		
+		function UseAction():void
+		{
+			/* The Ghost has the ability to scare his target and make them drop more candy than usual.
+			
+			What this function does is create a collision box in front of Ghost so that
+			any target that touches this box will take damage.
+			*/
+		}
+		
+		function onEnterFrame(event:Event):void
+		{
+			
+			//move player
+			this.x += _vx * _moveSpeed;
+			this.y += _vy * _moveSpeed;
+			
+			/****check boundaries*****/
+			if (this.x < this.width / 2)
+			{
+				this.x = this.width / 2;
+			}
+			
+			if (this.x > stage.stageWidth - (this.width / 2))
+			{
+				this.x = stage.stageWidth - (this.width / 2);
+			}
+			
+			if (this.y < 116) //make sure player doesn't go up to black border where HUD is
+			{
+				this.y = 116;
+			}
+			
+			if (this.y > stage.stageHeight - this.height / 2)
+			{
+				this.y = stage.stageHeight - this.height / 2;
+			}
+		}
+
+	}
+	
+}

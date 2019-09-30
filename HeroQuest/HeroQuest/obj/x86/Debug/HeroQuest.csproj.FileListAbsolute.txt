@@ -1,0 +1,9 @@
+C:\GameDev\_Projects\HeroQuest\HeroQuest\bin\x86\Debug\HeroQuest.exe
+C:\GameDev\_Projects\HeroQuest\HeroQuest\bin\x86\Debug\HeroQuest.pdb
+C:\GameDev\_Projects\HeroQuest\HeroQuest\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\GameDev\_Projects\HeroQuest\HeroQuest\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\GameDev\_Projects\HeroQuest\HeroQuest\obj\x86\Debug\HeroQuest.exe
+C:\GameDev\_Projects\HeroQuest\HeroQuest\obj\x86\Debug\HeroQuest.pdb
+C:\GameDev\_Projects\HeroQuest\HeroQuest\bin\x86\Debug\Content\MapTiles\corridortile.xnb
+C:\GameDev\_Projects\HeroQuest\HeroQuest\bin\x86\Debug\Content\Fonts\defaultFont.xnb
+C:\GameDev\_Projects\HeroQuest\HeroQuest\bin\x86\Debug\Content\Items\Weapons\broadsword.xml

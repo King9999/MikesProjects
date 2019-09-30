@@ -1,0 +1,96 @@
+﻿/* This is the gameplay screen. From here, the game can be paused and exited back to the title screen. */
+
+package  
+{
+	import flash.display.MovieClip;
+	import flash.display.Stage;
+	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.display.DisplayObject;
+	import flash.display.Graphics;
+	import flash.display.Shape;
+	import flash.display.Sprite;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	import flash.net.URLRequest;
+	import flash.media.SoundTransform;
+	
+	public class GameScreen extends MovieClip
+	{
+		var stageRef:Stage;
+		
+		//UI
+		var score:int;
+		var level:int;
+		var rainbowMeter:RainbowMeter;
+		var dmgMeter:DamageMeter;
+		
+		//graphics
+		var blackBG:BlackBG;
+		var starList:Vector.<Star>;
+
+		public function GameScreen(stageRef:Stage) 
+		{
+			this.stageRef = stageRef;
+			
+			/*****METER SETUP*******/
+			rainbowMeter = new RainbowMeter();
+			rainbowMeter.x = 700;
+			rainbowMeter.y = 700;
+			
+			/*****GRAPHICS*******/
+			blackBG = new BlackBG();		
+			starList = new Vector.<Star>();
+			
+			addChild(blackBG);
+			//create multiple stars and draw them randomly on the screen.
+			for (var i:int = 0; i < 40; i++)
+			{
+				starList.push(new Star());
+			}
+			
+			for each (var s:Star in starList)
+			{
+				s.x = Math.random() * stageRef.stageWidth;
+				s.y = Math.random() * stageRef.stageHeight;
+				addChild(s);
+			}
+			
+			
+			addChild(rainbowMeter);
+			
+			addEventListener(Event.ENTER_FRAME, Update);
+			stageRef.addEventListener(KeyboardEvent.KEY_UP, getInput);
+		}
+		
+		function getInput(event:KeyboardEvent):void
+		{
+			switch(event.keyCode)
+			{
+				case Keyboard.SPACE:
+					stageRef.removeEventListener(KeyboardEvent.KEY_UP, getInput);
+					Main.gameScreenOff = false;
+					trace ("Closed game screen");
+					break;
+			}
+		}
+		
+		function Update(event:Event):void
+		{
+			//update each star's movement.  If they go off-screen, they are repositioned at the top of the screen.
+			for each (var star:Star in starList)
+			{
+				star.y++;
+				if (star.y > stageRef.stageHeight)
+				{
+					star.y = -10;
+				}
+			}
+		}
+
+	}
+	
+}

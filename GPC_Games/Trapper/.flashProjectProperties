@@ -1,0 +1,23 @@
+<projectDescription>
+  <id>1365445731727</id>
+  <name>Trapper</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp>file:///C|/GameDev/_Projects/GPC_Games/Trapper/Trapper.fla</defaultApp>
+  <rootURI>file:///C|/GameDev/_Projects/GPC_Games/Trapper/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false"/>
+  <recentFiles editable="false">
+    <uri label="GameScreen.as">file:///C|/GameDev/_Projects/GPC_Games/Trapper/GameScreen.as</uri>
+    <uri label="Main.as">file:///C|/GameDev/_Projects/GPC_Games/Trapper/Main.as</uri>
+    <uri label="Trapper.fla">file:///C|/GameDev/_Projects/GPC_Games/Trapper/Trapper.fla</uri>
+    <uri label="AboutScreen.as">file:///C|/GameDev/_Projects/GPC_Games/Trapper/AboutScreen.as</uri>
+    <uri label="readme.txt">file:///C|/GameDev/_Projects/GPC_Games/Trapper/readme.txt</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

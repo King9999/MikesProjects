@@ -1,0 +1,16 @@
+﻿/* This is what the player first sees when they start the game.  The only icons to select here are "start" and "about." */
+
+package  
+{
+	
+	public class TitleScreen 
+	{
+
+		public function TitleScreen() 
+		{
+			// constructor code
+		}
+
+	}
+	
+}

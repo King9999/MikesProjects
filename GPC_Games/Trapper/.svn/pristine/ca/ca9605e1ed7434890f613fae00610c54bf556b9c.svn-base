@@ -1,0 +1,911 @@
+﻿/* This is the gameplay screen. From here, the game can be paused and exited back to the title screen. */
+
+package  
+{
+	import flash.display.MovieClip;
+	import flash.display.Stage;
+	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.display.DisplayObject;
+	import flash.display.Graphics;
+	import flash.display.Shape;
+	import flash.display.Sprite;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	import flash.net.URLRequest;
+	import flash.media.SoundTransform;
+	import flash.geom.Point;
+	import flash.display.BitmapData;
+	import flash.display.Bitmap;
+	import flash.utils.ByteArray;		//used to deep copy arrays
+	import flash.utils.getTimer;
+	import flash.system.System;
+	
+	public class GameScreen extends MovieClip
+	{
+		var stageRef:Stage;
+		
+		//UI & game states
+		var score:int;
+		var level:uint;
+		var levelIndex:uint;		//used to navigate levels in XML file.
+		var enemyCount:uint;		//current # of uncaptured creatures remaining.
+		var enemyTotal:uint;		//total number of creatures in the level.
+		var previousTime:int;		//used for calculating FPS.
+		var deltaTime:int;			//amount of time in milliseconds passed between frames.
+		
+		var levelText:TextField;
+		var livesText:TextField;
+		var enemyCountText:TextField;		//tracks how many enemies must be killed.
+		var uiTextFormat:TextFormat;
+		var gameOver:Boolean;
+		var gamePaused:Boolean;				//prevents any player input during win screen.
+		var waitTimer:int;				//used to delay screen changes in frames.
+		var winLabel:WinLabel;
+		
+		//level variables
+		var mapRowList:XMLList;				//gets all rows of map in XML file.
+		var objRowList:XMLList;				//gets all rows of objects in XML file.
+		var mapArray:Array;				//used to contain the map data from the file.
+		var objectArray:Array;				//used to contain the object data from the file.
+		var initMapArray:Array;			//used to restart current level
+		var initObjArray:Array;			//used to restart current level
+		const MAX_ROWS:int = 12;
+		const MAX_COLS:int = 16;
+		const TILE_SIZE:int = 64;
+		const MOVE_SPEED:int = 4;
+		
+		//map tiles
+		var waterTile:WaterTile;
+		var landTile:LandTile;
+		const WATER:String  = "0";
+		const LAND:String  = "1";
+		const LAND_BOTTOM:String = "2";
+		const LAND_TOP:String = "3";
+		const LAND_LEFT:String = "4";
+		const LAND_RIGHT:String = "5";
+		const LAND_UPLEFT:String = "6";
+		const LAND_UPRIGHT:String = "7";
+		const LAND_BTMLEFT:String = "8";
+		const LAND_BTMRIGHT:String = "9";
+		
+		//objects
+		const TREE:String  = "A";
+		const TRAP:String  = "B";
+		const CREATURE:String  = "C";
+		const PLAYER:String  = "D";
+		
+		//creature directions
+		const LEFT:int = 1;
+		const RIGHT:int = 2;
+		const UP:int = 3;
+		const DOWN:int = 4;
+			
+		//sound variables
+		/*var musicPlayer:MusicPlayer;
+		const PLAY:uint = 1;			//correspond to the frames used to play and stop music.
+		const STOP:uint = 2;*/
+		
+		//player.  
+		var player:Player;
+		var playerDead:Boolean;
+		var playerLives:int;
+		var playerIcon:Player;
+		
+		//creatures & objects
+		var creatureList:Vector.<Creature>;
+		var treeList:Vector.<PalmTree>;
+		var trapList:Vector.<Trap>;
+		var destinationList:Vector.<Point>;		//contains list of creature destinations on map.
+		
+		
+		//debug
+		var debugText:TextField;
+		var debugFormat:TextFormat;
+		
+		//music
+		var gameMusic:Sound;	
+		var musicChannel:SoundChannel;
+		var _volume:SoundTransform;	
+		
+
+		public function GameScreen(stageRef:Stage) 
+		{
+			this.stageRef = stageRef;
+			
+			//******VARIABLE INITIALIZATION GOES HERE********//
+			level = 0;
+			levelIndex = 0;
+			playerLives = 2;
+			playerDead = false;
+			gamePaused = false;
+			waitTimer = 0;
+			previousTime = 0;
+			deltaTime = 0;
+			
+			mapArray = new Array();
+			objectArray = new Array();
+			initMapArray = new Array();
+			initObjArray = new Array();
+			waterTile = new WaterTile();
+		    landTile = new LandTile();
+			
+			//container setup
+			creatureList = new Vector.<Creature>();
+			treeList = new Vector.<PalmTree>();
+			trapList = new Vector.<Trap>();
+			destinationList = new Vector.<Point>();
+			
+			//player Icon
+			playerIcon = new Player();
+			playerIcon.x = 70;
+			playerIcon.y = 695;
+			playerIcon.scaleX = 0.55;
+			playerIcon.scaleY = 0.55;
+			playerIcon.gotoAndStop(DOWN);
+			
+			//win label
+			winLabel = new WinLabel();
+			winLabel.x = stageRef.stageWidth + 96;	//starts offscreen.
+			winLabel.y = (stageRef.stageHeight * 0.5) - 40;
+			
+			
+			/**********TEXT SETUP. Change values as necessary*******************/
+			uiTextFormat = new TextFormat();
+			uiTextFormat.size = 20;
+			uiTextFormat.bold = true;
+			uiTextFormat.font = "Moire";
+			
+			levelText = new TextField();
+			levelText.defaultTextFormat = uiTextFormat;
+			levelText.textColor = 0xFFFF00;
+			levelText.width = 120;
+			levelText.height = 40;
+			levelText.x = 80;
+			levelText.y = 30;
+			levelText.selectable = false;
+			
+			livesText = new TextField();
+			livesText.defaultTextFormat = uiTextFormat;
+			livesText.textColor = 0xFFFF00;
+			livesText.width = 100;
+			livesText.height = 40;
+			livesText.x = 110;
+			livesText.y = 710;
+			livesText.text = "x " + playerLives;
+			livesText.selectable = false;
+			
+			enemyCountText = new TextField();
+			enemyCountText.defaultTextFormat = uiTextFormat;
+			enemyCountText.textColor = 0xCCCCFF;
+			enemyCountText.width = 220;
+			enemyCountText.height = 80;
+			enemyCountText.x = 50;
+			enemyCountText.y = 30;
+			enemyCountText.text = "";	//change this as necessary
+			enemyCountText.selectable = false;
+			
+			/*******DEBUG*******/
+			debugFormat = new TextFormat();
+			debugFormat.size = 20;
+			debugFormat.bold = true;
+			debugFormat.font = "Fixedsys";
+			
+			debugText = new TextField();
+			debugText.defaultTextFormat = debugFormat;
+			debugText.textColor = 0xCCCCFF;
+			debugText.width = 260;
+			debugText.height = 200;
+			debugText.x = 650;
+			debugText.y = 50;
+			debugText.selectable = false;
+			
+			/********SOUND SETUP****************/
+			gameMusic = new Sound(new URLRequest("StarTropics - Cave.mp3"));	//StarTropics music
+			musicChannel = new SoundChannel();
+			_volume = new SoundTransform(0.5);	//50% volume
+			
+			/*******READ FROM XML FILE*************/
+			
+			level = Main.levels.lvl[levelIndex].attributes()[0];	//gets level number (index 0) from file.
+			
+			loadLevel(level);
+			
+			 
+			/*****ADD ALL CHILD ELEMENTS HERE*****/
+			
+			addUI();
+	
+			/****EVENT LISTENERS*****/
+			addEventListener(Event.ENTER_FRAME, Update);
+			stageRef.addEventListener(KeyboardEvent.KEY_UP, getInput);
+			
+			/*******play music***********/
+			playMusic(musicChannel, gameMusic);
+			
+		}
+		
+		
+
+		function playMusic(channel:SoundChannel, sound:Sound):void
+		{
+			channel = sound.play();
+			channel.soundTransform = _volume;
+			channel.addEventListener(Event.SOUND_COMPLETE, Replay);
+		}
+		
+		function Replay(event:Event):void
+		{
+			//remove the event listener and start music again.
+			playMusic(musicChannel, gameMusic);
+			SoundChannel(event.target).removeEventListener(event.type, Replay);
+		}
+
+		function loadLevel(level:int):void
+		{
+			mapArray = new Array();
+			objectArray = new Array();
+			initObjArray = new Array();
+			
+			if (level <= 0)
+				level = 1;
+				
+			
+			/***load level. Two sets of arrays are used: one for the map terrain, and one for the objects. ***/
+			mapRowList = Main.levels.lvl[level-1].mapData.row;
+			objRowList = Main.levels.lvl[level-1].objects.row;
+			
+			for each(var row:XML in mapRowList)
+			{
+				var rowString:String = row.text();			//converts row values in file to string. This is done because there are commas in the rows.
+				var rowArray:Array = rowString.split(",");	//comma is used to separate values.
+				
+				mapArray.push(rowArray);	//this creates a nested array.
+			}
+			
+			for each(var row:XML in objRowList)
+			{
+				var rowString:String = row.text();	
+				var rowArray:Array = rowString.split(",");
+				
+				objectArray.push(rowArray);
+			}
+			
+			//clone the initObjArray so that it has its own references.
+			initObjArray = clone(objectArray);
+			
+			buildMap(mapArray);
+			buildObjects(objectArray);
+		}
+		
+		//checks map array and draws terrain to the screen.
+		function buildMap(sourceArray:Array):void
+		{
+			for (var row:int = 0; row < MAX_ROWS; row++)
+			{
+				for (var col:int = 0; col < MAX_COLS; col++)
+				{
+					switch(sourceArray[row][col])
+					{
+						case WATER:
+							waterTile = new WaterTile();
+							waterTile.x = col * waterTile.width;
+							waterTile.y = row * waterTile.height;
+							addChild(waterTile);
+							break;
+							
+						case LAND:
+							landTile = new LandTile();
+							landTile.gotoAndStop(1);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+							
+						case LAND_BOTTOM:
+							landTile = new LandTile();
+							landTile.gotoAndStop(2);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+							
+						case LAND_TOP:
+							landTile = new LandTile();
+							landTile.gotoAndStop(3);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+							
+						case LAND_LEFT:
+							landTile = new LandTile();
+							landTile.gotoAndStop(4);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+							
+						case LAND_RIGHT:
+							landTile = new LandTile();
+							landTile.gotoAndStop(5);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+							
+						case LAND_UPLEFT:
+							landTile = new LandTile();
+							landTile.gotoAndStop(6);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+							
+						case LAND_UPRIGHT:
+							landTile = new LandTile();
+							landTile.gotoAndStop(7);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+							
+						case LAND_BTMLEFT:
+							landTile = new LandTile();
+							landTile.gotoAndStop(8);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+						
+						case LAND_BTMRIGHT:
+							landTile = new LandTile();
+							landTile.gotoAndStop(9);
+							landTile.x = col * landTile.width;
+							landTile.y = row * landTile.height;
+							addChild(landTile);
+							break;
+					}
+				}
+			}
+		}
+		
+		//checks object array and draws objects to the screen. Must always follow after buildMap.
+		function buildObjects(sourceArray:Array):void
+		{
+			for (var row:int = 0; row < MAX_ROWS; row++)
+			{
+				for (var col:int = 0; col < MAX_COLS; col++)
+				{
+					switch(sourceArray[row][col])
+					{
+						case TREE:
+							var tree:PalmTree = new PalmTree();
+							tree.x = col * tree.width;
+							tree.y = row * tree.height;
+							treeList.push(tree);
+							addChild(tree);
+							break;
+							
+						case CREATURE:
+							var creature:Creature = new Creature();
+							creature.x = col * creature.width;
+							creature.y = row * creature.height;
+							creatureList.push(creature);
+							destinationList.push(new Point(creature.x, creature.y));
+							addChild(creature);
+							creature.gotoAndStop(LEFT);
+							break;
+							
+						case TRAP:
+							var trap:Trap = new Trap();
+							trap.x = col * trap.width;
+							trap.y = row * trap.height;
+							trapList.push(trap);
+							addChild(trap);
+							break;
+							
+						case PLAYER:
+							player = new Player();
+							player.x = col * player.width;
+							player.y = row * player.height;
+							addChild(player);
+							player.gotoAndStop(UP);
+							break;
+					}
+				}
+			}
+		}
+		
+		//updates object positions in the object array
+		function updateObjects(sourceArray:Array)
+		{
+			for (var i:int = 0; i < creatureList.length; i++)
+			{
+				if (creatureList[i].x < destinationList[i].x)
+				{
+					creatureList[i].x += MOVE_SPEED;
+					creatureList[i].gotoAndStop(RIGHT);
+				}
+				else if (creatureList[i].x > destinationList[i].x)
+				{
+					creatureList[i].x -= MOVE_SPEED;
+					creatureList[i].gotoAndStop(LEFT);
+				}
+				
+				else if (creatureList[i].y < destinationList[i].y)
+				{
+					creatureList[i].y += MOVE_SPEED;
+					creatureList[i].gotoAndStop(DOWN);
+				}
+				else if (creatureList[i].y > destinationList[i].y)
+				{
+					creatureList[i].y -= MOVE_SPEED;
+					creatureList[i].gotoAndStop(UP);
+				}
+			}
+			
+			for (var row:int = 0; row < MAX_ROWS; row++)
+			{
+				for (var col:int = 0; col < MAX_COLS; col++)
+				{
+					switch(sourceArray[row][col])
+					{
+						case CREATURE:
+							
+							//for each (var c:Creature in creatureList)
+//							{
+//								
+//								var cDestinationX:int = col * TILE_SIZE;
+//								var cDestinationY:int = row * TILE_SIZE;
+//								if (c.x < cDestinationX)
+//								{
+//									c.x += MOVE_SPEED;
+//									c.gotoAndStop(RIGHT);
+//								}
+//								else if (c.x > cDestinationX)
+//								{
+//									c.x -= MOVE_SPEED;
+//									c.gotoAndStop(LEFT);
+//								}
+//								
+//								if (c.y < cDestinationY)
+//								{
+//									c.y += MOVE_SPEED;
+//									c.gotoAndStop(DOWN);
+//								}
+//								else if (c.y > cDestinationY)
+//								{
+//									c.y -= MOVE_SPEED;
+//									c.gotoAndStop(UP);
+//								}
+//								
+//								//c.x = col * TILE_SIZE;
+////								c.y = row * TILE_SIZE;
+//							}
+							break;
+							
+						//case TRAP:
+//							var trap:Trap = new Trap();
+//							trap.x = col * trap.width;
+//							trap.y = row * trap.height;
+//							break;
+							
+						case PLAYER:
+							var destinationX:int = col * TILE_SIZE;
+							var destinationY:int = row * TILE_SIZE;
+							
+							if (player.x < destinationX)
+							{
+								player.x += MOVE_SPEED;
+								player.gotoAndStop(RIGHT);
+							}
+							else if (player.x > destinationX)
+							{
+								player.x -= MOVE_SPEED;
+								player.gotoAndStop(LEFT);
+							}
+								
+							if (player.y < destinationY)
+							{
+								player.y += MOVE_SPEED;
+								player.gotoAndStop(DOWN);
+							}
+							else if (player.y > destinationY)
+							{
+								player.y -= MOVE_SPEED;
+								player.gotoAndStop(UP);
+							}
+								
+							//player.x = col * player.width;
+							//player.y = row * player.height;
+							break;
+					}
+				}
+			}
+		}
+		
+		function removeTrap(sourceArray:Array, rowPos:int, colPos:int):void
+		{
+			var index:int = 0;
+			for each (var trap:Trap in trapList)
+			{
+				if(sourceArray[rowPos][colPos] == TRAP)
+				{
+					sourceArray[rowPos][colPos] = "0";
+					trapList.splice(index, 1);
+					removeChild(trap);
+				}
+				else
+					index++;
+			}
+			
+		}
+		
+		function removeCreature(sourceArray:Array, rowPos:int, colPos:int):void
+		{
+			var index:int = 0;
+			for each (var c:Creature in creatureList)
+			{
+				if(sourceArray[rowPos][colPos] == CREATURE)
+				{
+					sourceArray[rowPos][colPos] = "0";
+					creatureList.splice(index, 1);
+					removeChild(c);
+				}
+				else
+					index++;
+			}
+		}
+		
+		
+		
+		function getInput(event:KeyboardEvent):void
+		{
+			//Anytime the player moves, all creatures move in the opposite direction if possible.
+			//use the arrays to move objects around and to check for collision.
+			if (!gamePaused)
+			{
+				var rowPos:int = player.y / TILE_SIZE;
+				var colPos:int = player.x / TILE_SIZE;		//player position in array
+				
+				switch(event.keyCode)
+				{
+					case Keyboard.A:	//left
+						if (objectArray[rowPos][colPos-1] != TREE && mapArray[rowPos][colPos-1] == LAND)
+						{
+							//if the destination is a creature or a trap, then player is dead
+							if (objectArray[rowPos][colPos-1] == TRAP || objectArray[rowPos][colPos-1] == CREATURE)
+								playerDead = true;
+												
+							//move player to new position
+							objectArray[rowPos][colPos] = "0";
+							colPos--;
+							objectArray[rowPos][colPos] = PLAYER;
+							
+							//move creatures in opposite direction.
+							for each(var c:Creature in creatureList)
+							{
+								var cRowPos:int = c.y / TILE_SIZE;
+								var cColPos:int = c.x / TILE_SIZE;
+								
+								if (objectArray[cRowPos][cColPos+1] != TREE && mapArray[cRowPos][cColPos+1] == LAND)
+								{
+									if (objectArray[cRowPos][cColPos+1] == TRAP)
+									{
+										//creature is trapped; remove both the creature and the trap
+										removeTrap(objectArray, cRowPos, cColPos+1);
+										removeCreature(objectArray, cRowPos, cColPos);
+									}
+									else
+									{
+										//move creature to new position
+										objectArray[cRowPos][cColPos] = "0";
+										cColPos++;
+										objectArray[cRowPos][cColPos] = CREATURE;
+										
+										//update destination list
+										var index:int = creatureList.indexOf(c);
+										var point:Point = new Point(cColPos * TILE_SIZE, cRowPos * TILE_SIZE);
+										destinationList[index] = point;
+									}
+								}
+							}
+						}
+						break;
+					
+					case Keyboard.D:	//right
+						if (objectArray[rowPos][colPos+1] != TREE && mapArray[rowPos][colPos+1] == LAND)
+						{
+							//if the destination is a creature or a trap, then player is dead
+							if (objectArray[rowPos][colPos+1] == TRAP || objectArray[rowPos][colPos+1] == CREATURE)
+								playerDead = true;
+								
+							//move player to new position
+							objectArray[rowPos][colPos] = "0";
+							colPos++;
+							objectArray[rowPos][colPos] = PLAYER;
+							
+							//move creatures in opposite direction.
+							for each(var c:Creature in creatureList)
+							{
+								var cRowPos:int = c.y / TILE_SIZE;
+								var cColPos:int = c.x / TILE_SIZE;
+								
+								if (objectArray[cRowPos][cColPos-1] != TREE && mapArray[cRowPos][cColPos-1] == LAND)
+								{
+									if (objectArray[cRowPos][cColPos-1] == TRAP)
+									{
+										//creature is trapped; remove both the creature and the trap
+										removeTrap(objectArray, cRowPos, cColPos-1);
+										removeCreature(objectArray, cRowPos, cColPos);
+									}
+									else
+									{
+										//move creature to new position
+										objectArray[cRowPos][cColPos] = "0";
+										cColPos--;
+										objectArray[cRowPos][cColPos] = CREATURE;
+										
+										//update destination list
+										var index:int = creatureList.indexOf(c);
+										var point:Point = new Point(cColPos * TILE_SIZE, cRowPos * TILE_SIZE);
+										destinationList[index] = point;
+									}
+								}
+							}
+						}
+						break;
+						
+					case Keyboard.W:	//up
+						if (objectArray[rowPos-1][colPos] != TREE && mapArray[rowPos-1][colPos] == LAND)
+						{
+							//if the destination is a creature or a trap, then player is dead
+							if (objectArray[rowPos-1][colPos] == TRAP || objectArray[rowPos-1][colPos] == CREATURE)
+								playerDead = true;
+								
+							//move player to new position
+							objectArray[rowPos][colPos] = "0";
+							rowPos--;
+							objectArray[rowPos][colPos] = PLAYER;
+							
+							//move creatures in opposite direction.
+							for each(var c:Creature in creatureList)
+							{
+								var cRowPos:int = c.y / TILE_SIZE;
+								var cColPos:int = c.x / TILE_SIZE;
+								
+								if (objectArray[cRowPos+1][cColPos] != TREE && mapArray[cRowPos+1][cColPos] == LAND)
+								{
+									if (objectArray[cRowPos+1][cColPos] == TRAP)
+									{
+										//creature is trapped; remove both the creature and the trap
+										removeTrap(objectArray, cRowPos+1, cColPos);
+										removeCreature(objectArray, cRowPos, cColPos);
+									}
+									else
+									{
+										//move creature to new position
+										objectArray[cRowPos][cColPos] = "0";
+										cRowPos++;
+										objectArray[cRowPos][cColPos] = CREATURE;
+										
+										//update destination list
+										var index:int = creatureList.indexOf(c);
+										var point:Point = new Point(cColPos * TILE_SIZE, cRowPos * TILE_SIZE);
+										destinationList[index] = point;
+									}
+								}
+							}
+						}
+						break;
+						
+					case Keyboard.S:	//down
+						if (objectArray[rowPos+1][colPos] != TREE && mapArray[rowPos+1][colPos] == LAND)
+						{
+							//if the destination is a creature or a trap, then player is dead
+							if (objectArray[rowPos+1][colPos] == TRAP || objectArray[rowPos+1][colPos] == CREATURE)
+								playerDead = true;
+								
+							//move player to new position
+							objectArray[rowPos][colPos] = "0";
+							rowPos++;
+							objectArray[rowPos][colPos] = PLAYER;
+							
+							//move creatures in opposite direction.
+							for each(var c:Creature in creatureList)
+							{
+								var cRowPos:int = c.y / TILE_SIZE;
+								var cColPos:int = c.x / TILE_SIZE;
+								
+								if (objectArray[cRowPos-1][cColPos] != TREE && mapArray[cRowPos-1][cColPos] == LAND)
+								{
+									if (objectArray[cRowPos-1][cColPos] == TRAP)
+									{
+										//creature is trapped; remove both the creature and the trap
+										removeTrap(objectArray, cRowPos-1, cColPos);
+										removeCreature(objectArray, cRowPos, cColPos);
+									}
+									else
+									{
+										//move creature to new position
+										objectArray[cRowPos][cColPos] = "0";
+										cRowPos--;
+										objectArray[cRowPos][cColPos] = CREATURE;
+										
+										//update destination list
+										var index:int = creatureList.indexOf(c);
+										var point:Point = new Point(cColPos * TILE_SIZE, cRowPos * TILE_SIZE);
+										destinationList[index] = point;
+									}
+								}
+							}
+						}
+						break;
+				}
+			}
+		}
+		
+		
+		function UpdateDebug()
+		{
+			/* Update debug data in here. This function must go in the update loop. */
+			//get FPS
+			
+			var fps:int = 1000 / deltaTime;
+			
+			
+			//get memory
+			var mb:Number = System.totalMemory / 1024 / 1024;	//amount in Megabytes
+			var memory:Number = Math.round(mb * 100) / 100;
+			
+			debugText.text = "Creature Count: " + creatureList.length +
+								"\nTrap Count: " + trapList.length +
+								"\nTree Count: " + treeList.length +
+								"\nPlayer Pos: (" + player.x + ", " + player.y + ")" +
+								"\nFPS: " + fps + 
+								"\nMemory Used: " + memory + "MB";
+								//trace ("Frame rate: " + fps);
+		}
+		
+		//resets current level to original state
+		function resetLevel()
+		{
+			for each (var c:Creature in creatureList)
+			{
+				removeChild(c);
+			}
+			creatureList = new Vector.<Creature>();
+			destinationList = new Vector.<Point>();
+			
+			for each (var t:PalmTree in treeList)
+			{
+				removeChild(t);
+			}
+			treeList = new Vector.<PalmTree>();
+			
+			for each (var trap:Trap in trapList)
+			{
+				removeChild(trap);
+			}
+			trapList = new Vector.<Trap>();
+			
+			removeChild(player);
+			
+			
+			//create a deep copy of the inital object array and store the contents into the object array.					
+			objectArray = clone(initObjArray);
+			buildObjects(objectArray);
+		}
+		
+		function ResetGame()
+		{
+			/* All variables and containers are reset to default in here.*/
+			
+		}
+		
+		//creates a deep copy of an array so that changes made to one array doesn't affect another.
+		//byte arrays must be used.
+		function clone(sourceArray:Object):*
+		{
+			var tempArray:ByteArray = new ByteArray();
+			tempArray.writeObject(sourceArray);
+			tempArray.position = 0;
+			return (tempArray.readObject());
+		}
+		
+		//adds HUD to screen.
+		function addUI():void
+		{
+			//reset states & update text
+			winLabel.x = stageRef.stageWidth + 96;
+			livesText.text = "x " + playerLives;
+			levelText.text = "STAGE " + level;
+			
+			addChild(debugText);
+			addChild(levelText);
+			addChild(livesText);
+			addChild(playerIcon);
+			addChild(winLabel);
+		}
+		
+		//scrolls the win label across the screen. Must go in update loop.
+		function showWinLabel():void
+		{
+			
+		}
+		
+		function Update(event:Event):void
+		{
+			//get delta time
+			var time:int = getTimer();
+			deltaTime = time - previousTime;
+			previousTime = getTimer();
+			trace ("Delta Time: " + deltaTime);
+			
+			/* reduce fadescreen alpha. */
+			if (Main.fadeScreen.alpha > 0)
+				Main.fadeScreen.alpha -= 0.015;
+			/* Game loop typically ends when a terminating condition is met. Until that happens, everything that isn't an onscreen image
+			gets updated here.  Collision checking must be performed here. */
+			if (!gameOver)
+			{
+				
+				/*******Player movement*******/
+				
+				
+				/************Recreate level if player dies***********/
+				if (playerDead)
+				{
+					Main.fadeScreen.alpha = 1;
+					resetLevel();
+					//update lives
+					playerLives--;
+					livesText.text = "x " + playerLives;
+					playerDead = false;
+				}
+				
+				//win condition
+				if (creatureList.length == 0)
+				{
+					gamePaused = true;
+					if (winLabel.x > stageRef.stageWidth * 0.3)	//scroll win label till it reaches the centre
+						winLabel.x -= 16;
+					else
+					{
+						waitTimer++;
+						if (waitTimer > 60)
+						{
+							waitTimer = 0;
+							Main.fadeScreen.alpha = 1;
+							playerLives++;
+							loadLevel(++level);
+							resetLevel();
+							gamePaused = false;
+							
+							//I have to add the UI again because they get covered up by
+							//the new level's tiles.
+							addUI();
+						}
+					}
+				}
+				
+				updateObjects(objectArray);
+				
+		
+				
+				/**********debug**********/
+				UpdateDebug();
+			}	
+			else	
+			{
+				/* If terminating condition is met, the result goes here. */
+			}
+		}//end Update()
+
+	}
+	
+}

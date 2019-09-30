@@ -1,0 +1,32 @@
+<projectDescription>
+  <id>1318269726949</id>
+  <name>TrickOrTreat</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp>file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/TrickOrTreat.fla</defaultApp>
+  <rootURI>file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false"/>
+  <recentFiles editable="false">
+    <uri label="LandingPad.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/LandingPad.as</uri>
+    <uri label="Collision.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/Collision.as</uri>
+    <uri label="Ghost.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/Ghost.as</uri>
+    <uri label="TrickOrTreat.fla">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/TrickOrTreat.fla</uri>
+    <uri label="Main.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/Main.as</uri>
+    <uri label="SelectScreen.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/SelectScreen.as</uri>
+    <uri label="Maskless.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/Maskless.as</uri>
+    <uri label="Knight.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/Knight.as</uri>
+    <uri label="Princess.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/Princess.as</uri>
+    <uri label="Witch.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/Witch.as</uri>
+    <uri label="Player.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/Player.as</uri>
+    <uri label="House.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/House.as</uri>
+    <uri label="HouseManager.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/HouseManager.as</uri>
+    <uri label="PlayerManager.as">file:///C|/GameDev/_Projects/GPC_Games/TrickOrTreat/PlayerManager.as</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

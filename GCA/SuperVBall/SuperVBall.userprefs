@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Pause.js">
+    <Files>
+      <File FileName="Assets\Pause.js" Line="6" Column="1" />
+      <File FileName="Assets\Volleyball.cs" Line="3" Column="1" />
+      <File FileName="Assets\MoveGestures2.cs" Line="108" Column="12" />
+      <File FileName="Assets\Score.cs" Line="33" Column="41" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

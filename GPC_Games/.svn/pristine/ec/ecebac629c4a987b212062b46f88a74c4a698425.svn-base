@@ -1,0 +1,68 @@
+﻿/* The House gives candy to visiting players. The amount of candy that's given, as well as whether 
+the house even has candy, is determined at random.  The amount of candy will be displayed above 
+the roof. The amount of candy should be anywhere from 1 to 10, with the chance of a house having
+20 pieces. */
+
+
+package  
+{
+	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.events.Event;
+	
+	public class House extends MovieClip
+	{
+		private var _hasCandy:Boolean;		//checks if a house has candy
+		private var _candyAmount:int;
+
+		public function House() 
+		{
+			_hasCandy = false;
+			_candyAmount = 0;
+			this.gotoAndStop(0);		//by default, the frame should be set to "lights off."
+		}
+		
+		public function HouseHasCandy():Boolean
+		{
+			return _hasCandy;
+		}
+		
+		public function get CandyAmount():int
+		{
+			return _candyAmount;
+		}
+		
+		public function ReduceCandy(amount:int):void
+		{
+			_candyAmount -= amount;
+			if (_candyAmount < 0)
+			{
+				_candyAmount = 0;
+			}
+		}
+		
+		public function StockUp():void
+		{
+			var candyStock:int;		//random amount of candy
+			var chance:int;			//checks if house is brimming with candy
+			
+			//give a house a random amount of candy, with a possible chance of getting 20 pieces.
+			chance = Math.floor(Math.random() * 100) + 1;
+			
+			if (chance <= 20)
+			{
+				candyStock = 20;
+			}
+			else
+			{
+				candyStock = Math.floor(Math.random() * 10) + 1;
+			}
+			
+			_candyAmount = candyStock;
+			gotoAndStop(1);	//set "lights on" frame
+		}
+
+	}
+	
+}

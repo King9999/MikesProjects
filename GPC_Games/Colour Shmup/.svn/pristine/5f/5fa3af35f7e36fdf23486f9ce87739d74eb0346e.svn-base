@@ -1,0 +1,746 @@
+﻿/* This is the gameplay screen. From here, the game can be paused and exited back to the title screen. */
+
+package  
+{
+	import flash.display.MovieClip;
+	import flash.display.Stage;
+	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.display.DisplayObject;
+	import flash.display.Graphics;
+	import flash.display.Shape;
+	import flash.display.Sprite;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	import flash.net.URLRequest;
+	import flash.media.SoundTransform;
+	import flash.geom.Point;
+	import flash.display.BitmapData;
+	import flash.display.Bitmap;
+	
+	public class GameScreen extends MovieClip
+	{
+		var stageRef:Stage;
+		
+		//UI
+		var score:int;
+		var level:int;
+		var enemyCount:uint;		//current # of enemies killed.
+		var enemyTotal:uint;		//# of enemies that must be killed to go to next level
+		var rainbowMeter:RainbowMeter;
+		var dmgMeter:DamageMeter;
+		var border:MeterBorder;
+		var meterLabel:MeterLabel;
+		const FULL_METER:uint = 200;		//equal to rainbow gauge width.
+		var livesText:TextField;
+		var enemyCountText:TextField;		//tracks how many enemies must be killed.
+		var uiTextFormat:TextFormat;
+		var absorbLabel:AbsorbLabel = new AbsorbLabel();	//shown whenever an enemy is absorbed.
+		var showAbsorbLabel:Boolean = false;				//controls the absorb label display
+		
+		
+		//graphics
+		var blackBG:BlackBG;
+		var starList:Vector.<Star>;
+		
+		//sound variables
+		var gameMusic:Sound = new Sound(new URLRequest("Super Aleste - Area 1.mp3"));	//Space Megaforce area 1 music
+		var musicChannel:SoundChannel = new SoundChannel();
+		var _volume:SoundTransform = new SoundTransform(0.5);	//sets volume to 50%
+		
+		//player.  
+		var player:Ship;
+		var bulletList:Vector.<ShipBullet>;
+		var bulletCount:uint;
+		const WHITE:uint = 1;
+		const RED:uint = 2;			//The colour constants coincide with the keyframes of the Ship movieclip.
+		const BLUE:uint = 3;		//directional controls: left = red, right = blue, up = white, down = black
+		const BLACK:uint = 4;
+		var currentColour:uint;
+		var vx:Number;
+		var vy:Number;				//movement
+		var defaultSpeed:Number;
+		var speedMod:Number;		//adjusts bullet and player speed.
+		var bulletTimer:int;		//controls rate of fire. Timer = frame rate
+		var playerDead:Boolean;		//used to make player invincible after death
+		var playerInvincible:Boolean;
+		var playerLives:int;
+		var playerIcon:Ship;
+		var invulTimer:int;			//time, in frames, indicating how long player is invulnerable
+		
+		
+		//enemy
+		var red:Enemy = new Enemy(new Point(50, 180), new Point(200, 200), 100, 40, RED);
+		var blue:Enemy = new EnemyBlue(new Point(100, 260), new Point(200, 200), 100, 40, BLUE);
+		var black:Enemy = new EnemyBlack(new Point(200, 340), new Point(200, 200), 100, 40, BLACK);
+		var white:Enemy = new EnemyWhite(new Point(150, 420), new Point(200, 200), 100, 40, WHITE);
+		
+		var enemyList:Vector.<Enemy> = new Vector.<Enemy>();
+		
+		//power ups
+		var power1:PowerUp1 = new PowerUp1();	//increases bullet speed
+		var power2:PowerUp2 = new PowerUp2();	//gives +20 energy to rainbow gauge. this one should occur less frequently
+		var powerup1OnScreen:Boolean;
+		var powerup2OnScreen:Boolean;
+		var speedLabel:SpeedLabel = new SpeedLabel();		//speed powerup feedback.
+		var showSpeedLabel:Boolean;
+		var gaugeUpLabel:GaugeUpLabel = new GaugeUpLabel();
+		var showGaugeUpLabel:Boolean;
+		
+		//flight paths
+		var path1:BitmapData = new Flightpath1();
+	
+		
+		//debug
+		var debugText:TextField;
+		var debugFormat:TextFormat;
+
+		public function GameScreen(stageRef:Stage) 
+		{
+			this.stageRef = stageRef;
+			
+			
+			/*****METER SETUP*******/
+			rainbowMeter = new RainbowMeter();
+			rainbowMeter.x = 700;
+			rainbowMeter.y = 700;
+			rainbowMeter.width = 0;
+			
+			dmgMeter = new DamageMeter();
+			dmgMeter.x = rainbowMeter.x;
+			dmgMeter.y = rainbowMeter.y;
+			dmgMeter.width = 0;
+			
+			border = new MeterBorder();
+			border.x = rainbowMeter.x - 10;
+			border.y = rainbowMeter.y - 10;
+			
+			meterLabel = new MeterLabel();
+			meterLabel.x = border.x + 10;
+			meterLabel.y = border.y - 20;
+			
+			/*****GRAPHICS*******/
+			blackBG = new BlackBG();		
+			starList = new Vector.<Star>();
+			
+			
+			/*****PLAYER*******/
+			player = new Ship();
+			player.x = 500;
+			player.y = 600;
+			player.gotoAndStop(WHITE);
+			currentColour = WHITE;
+			
+			bulletList = new Vector.<ShipBullet>();
+			bulletCount = 0;
+			
+			//movement
+			vx = 0;
+			vy = 0;
+			defaultSpeed = 5;
+			speedMod = 0;
+			bulletTimer = 0;
+			
+			//counters
+			playerDead = false;
+			playerInvincible = false;
+			playerLives = 3;
+			playerIcon = new Ship();
+			playerIcon.x = 50;
+			playerIcon.y = 700;
+			playerIcon.scaleX = 0.55;
+			playerIcon.scaleY = 0.55;
+			playerIcon.gotoAndStop(WHITE);
+			
+			/********ENEMIES**********/
+			enemyList.push(red);
+			enemyList.push(blue);
+			enemyList.push(white);
+			enemyList.push(black);
+			
+			/*******UI**********/
+			enemyCount = 0;
+			enemyTotal = 20;
+			level = 1;
+			uiTextFormat = new TextFormat();
+			uiTextFormat.size = 30;
+			uiTextFormat.bold = true;
+			uiTextFormat.font = "Calibri";
+			
+			livesText = new TextField();
+			livesText.defaultTextFormat = uiTextFormat;
+			livesText.textColor = 0xCCCCFF;
+			livesText.width = 40;
+			livesText.height = 40;
+			livesText.x = 80;
+			livesText.y = 695;
+			livesText.text = "x " + playerLives;
+			livesText.selectable = false;
+			
+			enemyCountText = new TextField();
+			enemyCountText.defaultTextFormat = uiTextFormat;
+			enemyCountText.textColor = 0xCCCCFF;
+			enemyCountText.width = 200;
+			enemyCountText.height = 40;
+			enemyCountText.x = 50;
+			enemyCountText.y = 30;
+			enemyCountText.text = "Kill Count: " + enemyCount + "/" + enemyTotal;
+			enemyCountText.selectable = false;
+			
+			/*******DEBUG*******/
+			debugFormat = new TextFormat();
+			debugFormat.size = 20;
+			debugFormat.bold = true;
+			debugFormat.font = "Fixedsys";
+			
+			debugText = new TextField();
+			debugText.defaultTextFormat = debugFormat;
+			debugText.textColor = 0xCCCCFF;
+			debugText.width = 200;
+			debugText.height = 200;
+			debugText.x = 800;
+			debugText.y = 50;
+			debugText.selectable = false;
+			 
+			/*****ADD ALL ELEMENTS*****/
+			addChild(blackBG);
+			//create multiple stars and draw them randomly on the screen.
+			for (var i:int = 0; i < 40; i++)
+			{
+				starList.push(new Star());
+			}
+			
+			for each (var s:Star in starList)
+			{
+				s.x = Math.random() * stageRef.stageWidth;
+				s.y = Math.random() * stageRef.stageHeight;
+				addChild(s);
+			}
+			
+			addChild(player);
+			addChild(playerIcon);
+			addChild(livesText);
+			addChild (enemyCountText);
+			for each(var e:Enemy in enemyList)
+			{
+				addChild(e);
+			}
+			
+			addChild(border);
+			addChild(meterLabel);
+			addChild(dmgMeter);
+			addChild(rainbowMeter);
+			
+			addChild(debugText);
+	
+			/****EVENT LISTENERS*****/
+			addEventListener(Event.ENTER_FRAME, Update);
+			stageRef.addEventListener(KeyboardEvent.KEY_UP, getInput);
+			stageRef.addEventListener(KeyboardEvent.KEY_DOWN, moveShip);
+			
+			/*******play music***********/
+			PlayMusic(musicChannel, gameMusic);
+			//musicChannel = gameMusic.play(0, 10000);
+			//musicChannel.soundTransform = _volume;
+			
+		}
+		
+		/*Plays music and loops it infinitely. Flash has no built-in way of doing this */
+		function PlayMusic(channel:SoundChannel, sound:Sound):void
+		{
+			channel = sound.play();
+			channel.soundTransform = _volume;
+			channel.addEventListener(Event.SOUND_COMPLETE, Replay);
+		}
+		
+		function StopMusic(channel:SoundChannel)
+		{
+			channel.stop();
+			//channel.removeEventListener(Event.SOUND_COMPLETE, Replay);
+			trace ("Music stopped.");
+		}
+		
+		function Replay(event:Event):void
+		{
+			//remove the event listener and start music again.
+			PlayMusic(musicChannel, gameMusic);
+			SoundChannel(event.target).removeEventListener(event.type, Replay);
+		}
+		
+		function getInput(event:KeyboardEvent):void
+		{
+			switch(event.keyCode)
+			{
+				case Keyboard.SHIFT:	//pause game
+					stageRef.removeEventListener(KeyboardEvent.KEY_UP, getInput);
+					stageRef.removeEventListener(KeyboardEvent.KEY_DOWN, moveShip);
+					
+					//stop music
+					StopMusic(musicChannel);
+					Main.gameScreenOff = false;
+					trace ("Closed game screen");
+					break;
+					
+				case Keyboard.A: case Keyboard.D:
+					vx = 0;
+					break;
+				case Keyboard.W: case Keyboard.S:
+					vy = 0;
+					break;
+					
+				//colour change	
+				case Keyboard.LEFT:
+					currentColour = RED;
+					break;
+				case Keyboard.RIGHT:
+					currentColour = BLUE;
+					break;
+				case Keyboard.UP:
+					currentColour = WHITE;
+					break;
+				case Keyboard.DOWN:
+					currentColour = BLACK;
+					break;
+					
+			}
+		}
+		
+		function moveShip(event:KeyboardEvent):void
+		{
+			switch(event.keyCode)
+			{
+				case Keyboard.A:	//move ship left
+					vx = -defaultSpeed - speedMod;
+					break;
+				case Keyboard.D:	//right
+					vx = defaultSpeed + speedMod;
+					break;
+				case Keyboard.W:	//up
+					vy = -defaultSpeed - speedMod;
+					break;
+				case Keyboard.S:	//down
+					vy = defaultSpeed + speedMod;
+					break;
+				case Keyboard.SPACE:	//fire bullets. Can hold down. TODO: find out how to move and hold down key to shoot
+					if (bulletTimer <= 0 && !playerDead)
+					{
+						bulletList.push(new ShipBullet());
+						bulletList[bulletCount].x = player.x + 25;
+						bulletList[bulletCount].y = player.y - 40;
+						addChild(bulletList[bulletCount]);
+						bulletCount++;
+						bulletTimer = 10;
+					}
+					break;
+			}
+		}
+		
+		//player flashes while invincible
+		function Invincibility(frameCount:int)
+		{
+			if (frameCount > 0)
+			{
+				player.visible = !player.visible;	//repeated flashing
+				playerInvincible = true;
+			}
+			else
+			{
+				player.visible = true;
+				playerInvincible = false;
+			}
+		}
+		
+		function UpdateDebug()
+		{
+			var colour:String;
+			switch (currentColour)
+			{
+				case WHITE:
+					colour = "White";
+					break;
+				case BLUE:
+					colour = "Blue";
+					break;
+				case BLACK:
+					colour = "Black";
+					break;
+				case RED:
+					colour = "Red";
+					break;
+					
+			}
+			
+			debugText.text = "Bullets: " + bulletCount + "\n"
+								+ "Colour: " + colour + "\n"
+								+ "Rainbow Mtr.: " + rainbowMeter.width + "\n"
+								+ "Invul Timer: " + invulTimer + "\n"
+								+ "Abs. Label on: " + showAbsorbLabel + "\n";
+		}
+		
+		/* Check for opposing colours. More damage is dealt to player if they touch an enemy with an opposing colour. */
+		function PlayerIsOpposingColour(enemyColour:uint):Boolean
+		{
+			var coloursOpposed:Boolean = false;
+			
+			switch (currentColour)
+			{
+				case WHITE:
+					coloursOpposed = (enemyColour == BLACK) ? true : false;
+					break;
+				case BLACK:
+					coloursOpposed = (enemyColour == WHITE) ? true : false;
+					break;
+				case RED:
+					coloursOpposed = (enemyColour == BLUE) ? true : false;
+					break;
+				case BLUE:
+					coloursOpposed = (enemyColour == RED) ? true : false;
+					break;
+
+			}
+			
+			return coloursOpposed;
+		}
+		
+		function Update(event:Event):void
+		{
+			/*****update each star's movement.  If they go off-screen, they are repositioned at the top of the screen.****/
+			for each (var star:Star in starList)
+			{
+				star.y++;
+				if (star.y > stageRef.stageHeight)
+				{
+					star.y = -10;
+				}
+			}
+			
+			/*********UI Update***************/
+			//update rainbow meter.
+			if (dmgMeter.width > rainbowMeter.width)
+			{
+				dmgMeter.width -= 0.5;
+			}
+			
+			//update lives & kill count
+			livesText.text = "x " + playerLives;
+			enemyCountText.text = "Kill Count: " + enemyCount + "/" + enemyTotal;
+			
+			//check for invincibility
+			if (invulTimer > 0)
+				invulTimer--;
+			Invincibility(invulTimer);
+			
+			if (showAbsorbLabel)
+			{
+				absorbLabel.alpha -= 0.01;
+				trace (absorbLabel.alpha);
+				absorbLabel.y--;
+				if (absorbLabel.alpha <= 0)
+				{
+					removeChild(absorbLabel);
+					showAbsorbLabel = false;
+					trace ("label removed");
+				}
+			}
+			
+			if (showSpeedLabel)
+			{
+				speedLabel.alpha -= 0.01;
+				speedLabel.y--;
+				if (speedLabel.alpha <= 0)
+				{
+					removeChild(speedLabel);
+					showSpeedLabel = false;
+					trace ("label removed");
+				}
+			}
+			
+			if (showGaugeUpLabel)
+			{
+				gaugeUpLabel.alpha -= 0.01;
+				gaugeUpLabel.y--;
+				if (gaugeUpLabel.alpha <= 0)
+				{
+					removeChild(gaugeUpLabel);
+					showGaugeUpLabel = false;
+					trace ("gauge label removed");
+				}
+			}
+				
+			/************update player movement & colour**********/
+			player.x += vx;
+			player.y += vy;
+			
+			//boundary check
+			if (player.x < 0)
+				player.x = 0;
+			if (player.x > stageRef.stageWidth - player.width)
+				player.x = stageRef.stageWidth - player.width;
+			if (player.y > stageRef.stageHeight - player.height)
+				player.y = stageRef.stageHeight - player.height;
+			if (player.y < 0)
+				player.y = 0;
+			
+			player.gotoAndStop(currentColour);
+			playerIcon.gotoAndStop(currentColour);
+			
+			//if player is dead, reposition back to starting point.
+			if (playerDead)
+			{
+				player.x = 500;
+				player.y = 600;
+				addChild(player);
+				invulTimer = 180;
+				playerDead = false;
+			}
+			
+			/******Powerup movement & collision******/
+			if (powerup1OnScreen)
+			{
+				power1.y += 3;
+				if (power1.y > stageRef.stageHeight - power1.height)
+				{
+					//kill the powerup
+					removeChild(power1);
+					powerup1OnScreen = false;
+				}
+				else if (player.hitTestObject(power1))	//speed boost
+				{
+					removeChild(power1);
+					powerup1OnScreen = false;
+					speedMod += 0.5;
+					
+					//show speed label
+					showSpeedLabel = true;
+					speedLabel.x = player.x;
+					speedLabel.y = player.y;
+					speedLabel.alpha = 1;
+					addChild(speedLabel);
+					
+					trace ("Received powerup!");
+				}
+			}
+			
+			if (powerup2OnScreen)
+			{
+				power2.y += 3;
+				if (power2.y > stageRef.stageHeight - power2.height)
+				{
+					//kill the powerup
+					removeChild(power2);
+					powerup2OnScreen = false;
+				}
+				else if (player.hitTestObject(power2))	//fill rainbow meter
+				{
+					removeChild(power2);
+					powerup2OnScreen = false;
+					if (rainbowMeter.width + 20 > FULL_METER)
+					{
+						rainbowMeter.width = FULL_METER;
+						dmgMeter.width = FULL_METER;
+					}
+					else
+					{
+						rainbowMeter.width += 20;
+						dmgMeter.width += 20;
+					}
+					
+					//show gauge up label
+					showGaugeUpLabel = true;
+					gaugeUpLabel.x = player.x;
+					gaugeUpLabel.y = player.y;
+					gaugeUpLabel.alpha = 1;
+					addChild(gaugeUpLabel);
+					
+					trace ("Received gauge powerup!");
+				}
+			}
+			
+			/**********update bullets***********/
+			var i:uint = 0;
+			
+			if (bulletTimer > 0)
+				bulletTimer--;
+			
+			for each(var b:ShipBullet in bulletList)
+			{
+				b.y -= (defaultSpeed * 1.5) + speedMod;
+				if (b.y < 0)
+				{
+					//destroy bullet
+					try
+					{
+						bulletList.splice(bulletList.indexOf(b), 1);
+						removeChild(b);
+						trace ("bullet destroyed");
+					}
+					catch (err:Error)
+					{
+						trace ("Unable to remove child!");
+					}				
+					bulletCount--;
+				}
+				else	//check for collision between a bullet and enemy
+				{
+					for each(var e:Enemy in enemyList)
+					{
+						if (b.hitTestObject(e) && currentColour != e.Colour())
+						{
+							//call explosion
+							var explode:Death = new Death();
+							explode.x = e.x;
+							explode.y = e.y;
+							addChild(explode);	//this should be going out of scope once out of the loop.
+							
+							//if enemy was an opposing colour, generate a power up
+							if (PlayerIsOpposingColour(e.Colour()))
+							{
+								var chance:Number = Math.random() * 100;
+								if (chance <= 30)	//drop power2, which fills rainbow meter
+								{
+									power2.x = e.x;
+									power2.y = e.y;
+									addChild(power2);
+									powerup2OnScreen = true;
+								}
+								else
+								{
+									power1.x = e.x;
+									power1.y = e.y;
+									addChild(power1);
+									powerup1OnScreen = true;
+								}
+							}
+							
+							bulletList.splice(bulletList.indexOf(b), 1);
+							enemyList.splice(enemyList.indexOf(e), 1);
+							removeChild(b);
+							removeChild(e);
+							bulletCount--;
+							enemyCount++;
+						}
+						else if (b.hitTestObject(e) && currentColour == e.Colour())
+						{
+							//only the bullet dies
+							bulletList.splice(bulletList.indexOf(b), 1);
+							removeChild(b);
+							bulletCount--;
+						}
+					}
+				}
+				i++;
+			}
+			
+			/************Enemy movement************/
+			/*enemyList.FollowPath(path1, 0);
+			enemyList.x = enemyList.StartPoint().x;
+			enemyList.y = enemyList.StartPoint().y;*/
+			/*var area:uint = path1.width * path1.height;
+			var px:uint = 0;
+			var py:uint = 0;
+			for (px = 0; px < path1.width; px++)
+			{
+				for (py = 0; py < path1.height; py++)
+				{
+					if (path1.getPixel32(px, py) != 0)
+						trace ("pixel found");
+				}
+			}*/
+			//enemyList.x += 0.02;
+			//enemyList.y = 1 + enemyList.x * enemyList.x;
+			
+			/************Collision Check***********/
+			//Collision between player & enemy//
+			for each(var e:Enemy in enemyList)
+			{
+				
+				if (!playerInvincible && player.hitTestObject(e) && currentColour == e.Colour())
+				{
+					
+					if (rainbowMeter.width + e.MeterAmount() > FULL_METER)
+					{
+						rainbowMeter.width = FULL_METER;
+						dmgMeter.width = FULL_METER;
+					}
+					else
+					{
+						rainbowMeter.width += e.MeterAmount();
+						dmgMeter.width += e.MeterAmount();
+					}
+					
+					//show absorb label
+					showAbsorbLabel = true;
+					absorbLabel.x = player.x;
+					absorbLabel.y = player.y;
+					absorbLabel.alpha = 1;
+					addChild(absorbLabel);
+					
+					
+					//destroy enemy
+					enemyList.splice(enemyList.indexOf(e), 1);
+					removeChild(e);
+					enemyCount++;
+					trace("absorbed enemy");
+				}
+				else if (!playerInvincible && player.hitTestObject(e) && currentColour != e.Colour())
+				{
+					if (rainbowMeter.width <= 0 && !playerDead)
+					{
+						//player dies
+						var explode:Death = new Death();
+						explode.x = player.x;
+						explode.y = player.y;
+						removeChild(player);	//must remove player in order for explosion to play properly.
+						playerDead = true;
+						playerLives--;
+						addChild(explode);	//this should be going out of scope once out of the loop.
+						trace ("player dead");
+					}
+					else
+					{
+						var mod:Number = 1;	//used to adjust damage depending on colours
+						var damage:Number;
+						
+						if (PlayerIsOpposingColour(e.Colour()))
+							//deal more damage to player
+							mod = 1.5;
+						
+							
+						damage = Math.ceil(e.MeterAmount() * mod);
+						
+						//lose rainbow meter
+						if (rainbowMeter.width < damage)
+							rainbowMeter.width = 0;
+						else
+							rainbowMeter.width -= damage;
+						
+						//kill enemy & call explosion
+						var explode:Death = new Death();
+						explode.x = e.x;
+						explode.y = e.y;
+						addChild(explode);
+						enemyList.splice(enemyList.indexOf(e), 1);
+						removeChild(e);
+						enemyCount++;
+						
+						//player is temporarily invincible.
+						playerInvincible = true;
+						invulTimer = 60;
+						trace ("crashed into enemy");
+					}
+				}
+				
+			}
+			
+	
+			
+			/**********debug**********/
+			UpdateDebug();
+		}
+
+	}
+	
+}

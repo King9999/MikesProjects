@@ -1,0 +1,25 @@
+<projectDescription>
+  <id>1333052423465</id>
+  <name>BombStopper</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp>file:///C|/GameDev/_Projects/Flash Prototypes/BombStopper/BombStopper.fla</defaultApp>
+  <rootURI>file:///C|/GameDev/_Projects/Flash%20Prototypes/BombStopper/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false">
+    <uri label="BombStopper.fla">file:///C|/GameDev/_Projects/Flash Prototypes/BombStopper/BombStopper.fla</uri>
+  </compileList>
+  <recentFiles editable="false">
+    <uri label="Main.as">file:///C|/GameDev/_Projects/Flash%20Prototypes/BombStopper/Main.as</uri>
+    <uri label="dictionary.xml">file:///C|/GameDev/_Projects/Flash Prototypes/BombStopper/dictionary.xml</uri>
+    <uri label="Main.as">file:///C|/GameDev/_Projects/Flash Prototypes/BombStopper/Main.as</uri>
+    <uri label="Clock.as">file:///C|/GameDev/_Projects/Flash Prototypes/BombStopper/Clock.as</uri>
+    <uri label="BombStopper.fla">file:///C|/GameDev/_Projects/Flash Prototypes/BombStopper/BombStopper.fla</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

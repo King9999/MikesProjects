@@ -1,0 +1,53 @@
+﻿/* This class manages all of the House objects. It controls whether a house has candy, and how much
+candy it has. 
+
+-There will be a 40% chance that a house will have candy.
+-Houses normally have 1-10 pieces of candy. Each time a house is stocked, there will be a 20% chance 
+that a house will have 20 pieces of candy.
+-There will be 10 houses in the game.
+*/
+
+
+
+package  
+{
+	import flash.display.MovieClip;
+	import House;
+	import flash.events.Event;
+	
+	public class HouseManager extends MovieClip
+	{
+		private var _houseArray:Array = [house0, house1, house2, house3, house4, house5,
+											 house6, house7, house8, house9];
+		
+
+		public function HouseManager() 
+		{
+			//set up an array of House objects and randomly determine which ones start with
+			//candy.
+			
+			//_houseArray = new Array();
+				
+			
+			//set up the houses
+			/*for (int i = 0; i < 10; i++)
+			{
+				var house:House = new House();
+				_houseArray.push(house);
+				
+			}*/
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			
+		}
+		
+		function onEnterFrame(event:Event):void
+		{
+			//The only thing this function does is check if a house will get stocked
+			//with candy.
+			var chanceToStockUp:int;
+			house0.StockUp();
+		}
+
+	}
+	
+}

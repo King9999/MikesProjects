@@ -1,0 +1,16 @@
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\Irrelvant.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\Irrelvant.pdb
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\Boo.Lang.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\UnityEditor.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\UnityEngine.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\UnityScript.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\nunit.framework.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\Boo.Lang.Compiler.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\UnityScript.Lang.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\Boo.Lang.PatternMatching.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\Boo.Lang.Parser.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\Boo.Lang.Useful.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\Temp\bin\Debug\Mono.Security.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\obj\Debug\ResolveAssemblyReference.cache
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\obj\Debug\Irrelvant.dll
+C:\GameDev\_Projects\GPC_Games\Pollen_Panic\obj\Debug\Irrelvant.pdb

@@ -1,0 +1,87 @@
+﻿/* The about screen contains credits as well as how to play the game. */
+
+package 
+{
+	import flash.display.MovieClip;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flashx.textLayout.formats.BackgroundColor;
+	import flash.display.Stage;
+	
+	public class AboutScreen extends MovieClip
+	{
+		var quitText:TextField;
+		var quitTextFormat:TextFormat;
+		
+		var instructionText:TextField;
+		var instructionFormat:TextFormat;
+		var bg:Background = new Background();
+		var stageRef:Stage;	//this is important to have. With this, I can gain control of the keyboard event listener
+
+		public function AboutScreen(stageRef:Stage) 
+		{
+			
+			this.stageRef = stageRef;
+			
+			//text
+			quitTextFormat = new TextFormat();
+			quitTextFormat.size = 30;
+			quitTextFormat.bold = true;
+			quitTextFormat.font = "Calibri";
+			
+			quitText = new TextField();
+			quitText.defaultTextFormat = quitTextFormat;	
+			quitText.text = "Press [SPACE] to return to title";
+			quitText.textColor = 0xFFFFFF;
+			quitText.width = 500;
+			quitText.height = 80;
+			quitText.x = 350;
+			quitText.y = 600;
+			quitText.selectable = false;
+			
+			instructionFormat = new TextFormat();
+			instructionFormat.size = 20;
+			instructionFormat.bold = true;
+			instructionFormat.font = "Calibri";
+			
+			instructionText = new TextField();
+			instructionText.defaultTextFormat = instructionFormat;	
+			instructionText.text = "Absorb enemies with the same colour as you by touching them.  Absorbing enemies fills up your \n" +
+									"Rainbow Gauge.  The Rainbow Gauge keeps you alive and decimates your enemies! \n\n" + 
+
+									"*Touching an enemy who is not your colour results in damage to your ship and a loss of \n" +
+									"energy from the Rainbow Gauge. If you touch an enemy while the gauge is empty, you die. \n\n" + 
+									"*If you touch an enemy who is opposite your colour, you will take more damage!";
+			instructionText.textColor = 0xFFFFFF;
+			instructionText.width = 850;
+			instructionText.height = 200;
+			instructionText.x = 150;
+			instructionText.y = 200;
+			instructionText.selectable = false;
+			
+			addChild(bg);
+			addChild(instructionText);
+			addChild(quitText);
+			
+			stageRef.addEventListener(KeyboardEvent.KEY_UP, closeScreen);
+		}
+		
+		function closeScreen(event:KeyboardEvent):void
+		{
+			switch(event.keyCode)
+			{
+				case Keyboard.SPACE:
+					//close screen
+					Main.aboutScreenOn = false;
+					removeEventListener(KeyboardEvent.KEY_UP, closeScreen);
+					trace ("Closed about screen");
+					break;
+			}
+		}
+
+	}
+	
+}

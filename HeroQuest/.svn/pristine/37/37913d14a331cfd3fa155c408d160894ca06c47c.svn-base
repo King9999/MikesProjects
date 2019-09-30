@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HeroQuest.Items;
+
+namespace HeroQuest.Monsters
+{
+    class Monster
+    {
+        private int mBodyPoints;    //health
+        private int mMindPoints;    //spell resistance
+        private int mAttack;        //attack dice
+        private int mDefend;        //defend dice
+        private int mGold;          //amount of gold coins dropped
+        private string mName;       //monster name
+        private Item mItem;         //item that drops when killed
+        private float dropRate;     //item & gold drop rate. Gold takes precedence
+    }
+}

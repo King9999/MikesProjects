@@ -1,0 +1,15 @@
+<Weapon>
+	<name>Broadsword</name>
+	<desc>Common sword with decent power</desc>
+	<price>100</price>
+	<attack>3</attack>
+	<effect>0</effect>
+</Weapon>
+
+<!--Item Description
+Name: item name
+Desc: text description of item. May include item effects
+Price: item price.  A price of 0 means it can't be sold.
+Attack/Defend: the number of dice used to attack/defend
+Effect: The ID containing any special effects.  A lookup table will be used to determine the effect. 0 means the item has no effects.
+-->  

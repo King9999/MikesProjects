@@ -1,0 +1,83 @@
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [aticfx32.dll 8.17.10.1077]
+    Renderer: AMD Radeon HD 6900M Series  
+    Vendor:   ATI
+    VRAM:     2030 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 DF24=1 INTZ=1 RAWZ=0 NULL=1 RESZ=1 SlowINTZ=1
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<I> Initializing (RawInput).
+<RI> Input initialized.
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+- Completed reload, in  0.071 seconds
+Platform assembly: C:\GameDev\_Projects\GCA\SuperVBall\vbALL_Data\Managed\Boo.Lang.dll (this message is harmless)
+Level 'Court' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level 'Court' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level '' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level '' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level '' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level '' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level 'Court' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level 'Court' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level '' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level '' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level 'Court' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+
+Level 'Court' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Misc/Player.cpp Line: 259)
+

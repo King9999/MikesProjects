@@ -1,0 +1,8 @@
+C:\GameDev\_Projects\GCA\Mobile VBall\Temp\bin\Debug\Assembly-CSharp.dll
+C:\GameDev\_Projects\GCA\Mobile VBall\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\GameDev\_Projects\GCA\Mobile VBall\Temp\bin\Debug\UnityEditor.dll
+C:\GameDev\_Projects\GCA\Mobile VBall\Temp\bin\Debug\UnityEngine.dll
+C:\GameDev\_Projects\GCA\Mobile VBall\Temp\bin\Debug\nunit.framework.dll
+C:\GameDev\_Projects\GCA\Mobile VBall\obj\Debug\ResolveAssemblyReference.cache
+C:\GameDev\_Projects\GCA\Mobile VBall\obj\Debug\Assembly-CSharp.dll
+C:\GameDev\_Projects\GCA\Mobile VBall\obj\Debug\Assembly-CSharp.pdb

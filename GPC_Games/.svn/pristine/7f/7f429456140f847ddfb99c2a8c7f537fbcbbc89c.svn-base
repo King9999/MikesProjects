@@ -1,0 +1,128 @@
+﻿/* The Princess is able to collect more candy from houses than any other character, and she can move
+slightly faster than other characters.  However, the Princess cannot perform an action.
+
+STATS
+move speed = fast (1.5x move speed)
+candy drop amt = normal (5 pieces of candy per hit)
+cooldown = N/A  */
+
+package 
+{
+	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.events.Event;
+	
+	public class Princess extends Player
+	{
+
+		public function Princess() 
+		{
+			//addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			_playerName = "Princess";
+			_candyAmount = 0;
+			_cooldown = 0;		
+			_dropAmount = 5;
+			_candyTaken = 2;
+			_vx = 0;
+			_vy = 0;
+			_moveSpeed = 1.5;
+			
+			//event listeners
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		}
+		
+		/* Keyboard controls. The player can move up, down, left and right.  The player can perform
+		an action by pressing the Spacebar. */
+		private function onKeyDown(event:KeyboardEvent):void
+		{
+			//Walk left
+			if (event.keyCode == Keyboard.LEFT)
+			{
+					
+				_vx = -1;
+			}
+				
+			//Walk right
+			if (event.keyCode == Keyboard.RIGHT)
+			{
+				
+				_vx = 1;
+			}
+								
+			//Walk down
+			if (event.keyCode == Keyboard.DOWN)
+			{
+				
+				_vy = 1;
+			}
+			
+			//Walk up
+			if (event.keyCode == Keyboard.UP)
+			{
+				
+				_vy = -1;
+			}
+			
+		}
+		
+		/* This function checks when a key is released */
+		private function onKeyUp(event:KeyboardEvent):void
+		{
+			if(event.keyCode == Keyboard.LEFT || event.keyCode == Keyboard.RIGHT)
+			{
+				_vx = 0;
+			}
+									
+			if (event.keyCode == Keyboard.DOWN || event.keyCode == Keyboard.UP)
+			{
+				_vy = 0;
+			}
+		}
+		
+		function UseAction():void
+		{
+			/* The Princess has no action, so this function does nothing. */
+		}
+		
+		/*private function AddCandy():void
+		{
+			//The princess gets more candy at a house.
+			_candyAmount += 2;
+		}*/
+		
+		function onEnterFrame(event:Event):void
+		{
+			//move player
+			this.x += _vx * _moveSpeed;
+			this.y += _vy * _moveSpeed;
+			
+			/***check boundaries****/
+			if (this.x < this.width / 2)
+			{
+				this.x = this.width / 2;
+			}
+			
+			if (this.x > stage.stageWidth - (this.width / 2))
+			{
+				this.x = stage.stageWidth - (this.width / 2);
+			}
+			
+			if (this.y < 116) //make sure player doesn't go up to black border where HUD is
+			{
+				this.y = 116;
+			}
+			
+			if (this.y > stage.stageHeight - this.height / 2)
+			{
+				this.y = stage.stageHeight - this.height / 2;
+			}
+			
+		}
+
+	}
+	
+}
+

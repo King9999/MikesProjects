@@ -1,0 +1,22 @@
+<projectDescription>
+  <id>1333925640780</id>
+  <name>FlySwat</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp>file:///C|/GameDev/_Projects/Flash Prototypes/FlySwat/FlySwat.fla</defaultApp>
+  <rootURI>file:///C|/GameDev/_Projects/Flash Prototypes/FlySwat/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false">
+    <uri label="FlySwat.fla">file:///C|/GameDev/_Projects/Flash Prototypes/FlySwat/FlySwat.fla</uri>
+  </compileList>
+  <recentFiles editable="false">
+    <uri label="FlySwat.fla">file:///C|/GameDev/_Projects/Flash Prototypes/FlySwat/FlySwat.fla</uri>
+    <uri label="Main.as">file:///C|/GameDev/_Projects/Flash Prototypes/FlySwat/Main.as</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

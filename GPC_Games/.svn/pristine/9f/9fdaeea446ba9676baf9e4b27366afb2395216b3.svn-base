@@ -1,0 +1,115 @@
+﻿/* The Witch has a magic wand that allows ranged attacks.  It has a limited number of charges;
+once the charges are used up, she will be unable to attack.
+
+STATS
+move speed = normal (1x move speed)
+candy drop amt = normal (5 pieces of candy per hit)
+cooldown = normal (5 seconds / 300 frames) */
+
+package 
+{
+	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.events.Event;
+	
+	public class Witch extends Player
+	{
+		private var _charges:int;	//number of charges for ranged attack
+
+		public function Witch() 
+		{
+			
+			//addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			_playerName = "Witch";
+			_candyAmount = 0;
+			_cooldown = 300;		//5 seconds to recharge scare attack
+			_dropAmount = 5;
+			_vx = 0;
+			_vy = 0;
+			_moveSpeed = 1;
+			_charges = 10;
+			
+			//event listeners
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		}
+		
+		/* Keyboard controls. The player can move up, down, left and right.  The player can perform
+		an action by pressing the Spacebar. */
+		private function onKeyDown(event:KeyboardEvent):void
+		{
+			//Walk left
+			if (event.keyCode == Keyboard.LEFT)
+			{
+				//_accelX = -0.2;	
+				_vx = -1;
+			}
+				
+			//Walk right
+			if (event.keyCode == Keyboard.RIGHT)
+			{
+				//_accelX = 0.2;
+				_vx = 1;
+			}
+								
+			//Walk down
+			if (event.keyCode == Keyboard.DOWN)
+			{
+				//_accelY = 0.2;
+				_vy = 1;
+			}
+			
+			//Walk up
+			if (event.keyCode == Keyboard.UP)
+			{
+				//_accelY = -0.2;
+				_vy = -1;
+			}
+			
+			//Action button
+			if (event.keyCode == Keyboard.SPACE)
+			{
+				//perform the player-specific action
+				UseAction();
+			}
+		}
+		
+		/* This function checks when a key is released */
+		private function onKeyUp(event:KeyboardEvent):void
+		{
+			if(event.keyCode == Keyboard.LEFT || event.keyCode == Keyboard.RIGHT)
+			{
+				_vx = 0;
+			}
+					
+			if (event.keyCode == Keyboard.SPACE)
+			{
+				//Nothing should happen. Once the space is pressed, the action should go into cooldown
+			}
+				
+			if (event.keyCode == Keyboard.DOWN || event.keyCode == Keyboard.UP)
+			{
+				_vy = 0;
+			}
+		}
+		
+		function UseAction():void
+		{
+			/* The Witch fires a magic beam that travels in one direction until it hits something.
+			Cooldown doesn't begin until the beam is destroyed.
+			
+			
+			*/
+		}
+		
+		function onEnterFrame(event:Event):void
+		{
+			
+		}
+
+	}
+	
+}
+

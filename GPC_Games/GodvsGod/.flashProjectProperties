@@ -1,0 +1,26 @@
+<projectDescription>
+  <id>1337099635468</id>
+  <name>GodvsGod</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp>file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/GodvsGod.fla</defaultApp>
+  <rootURI>file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false">
+    <uri label="GodvsGod.fla">file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/GodvsGod.fla</uri>
+  </compileList>
+  <recentFiles editable="false">
+    <uri label="Clock.as">file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/Clock.as</uri>
+    <uri label="GodvsGod.html">file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/GodvsGod.html</uri>
+    <uri label="God.as">file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/God.as</uri>
+    <uri label="Main.as">file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/Main.as</uri>
+    <uri label="Map.as">file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/Map.as</uri>
+    <uri label="GodvsGod.fla">file:///C|/GameDev/_Projects/GPC_Games/GodvsGod/GodvsGod.fla</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

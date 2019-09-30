@@ -1,0 +1,27 @@
+<projectDescription>
+  <id>1323208259041</id>
+  <name>Dream Hackers</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp>file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/Dream Hackers.fla</defaultApp>
+  <rootURI>file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false">
+    <uri label="Dream Hackers.fla">file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/Dream Hackers.fla</uri>
+  </compileList>
+  <recentFiles editable="false">
+    <uri label="HUD.as">file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/HUD.as</uri>
+    <uri label="Dream Hackers.fla">file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/Dream Hackers.fla</uri>
+    <uri label="Slime.as">file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/Slime.as</uri>
+    <uri label="Enemy.as">file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/Enemy.as</uri>
+    <uri label="NPC.as">file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/NPC.as</uri>
+    <uri label="Main.as">file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/Main.as</uri>
+    <uri label="Player.as">file:///C|/GameDev/_Projects/GPC_Games/Dream Hackers/Player.as</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

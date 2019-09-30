@@ -1,0 +1,26 @@
+<projectDescription>
+  <id>1360000434425</id>
+  <name>ColourShmup</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp>file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/ColourShmup.fla</defaultApp>
+  <rootURI>file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false">
+    <uri label="ColourShmup.fla">file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/ColourShmup.fla</uri>
+  </compileList>
+  <recentFiles editable="false">
+    <uri label="ColourShmup.fla">file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/ColourShmup.fla</uri>
+    <uri label="GameScreen.as">file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/GameScreen.as</uri>
+    <uri label="AboutScreen.as">file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/AboutScreen.as</uri>
+    <uri label="Main.as">file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/Main.as</uri>
+    <uri label="Enemy.as">file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/Enemy.as</uri>
+    <uri label="Player.as">file:///C|/GameDev/_Projects/GPC_Games/Colour Shmup/Player.as</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

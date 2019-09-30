@@ -1,0 +1,177 @@
+<!--This file contains all the words used in Bomb Stopper.  The words will be arranged by difficulty.  Higher difficulty affects the timer, the word count and the length of each word.
+
+TAGS
+*******
+difficulty: indicates challenge level: easy, normal, hard.
+timer: the number of seconds alotted
+word count: the number of words that must be entered correctly to complete the stage
+list: the list of words contained within the difficulty level.  
+	-Easy consists of 5-letter words
+	-Normal is 5-8 letter words                                         
+	-Hard is 9-12 letter words.                                         
+                                                                        
+-->                                                                     
+                                                                        
+                                                                        
+                                                                        
+<wordlist>                                                              
+	<difficulty name="Easy" timer="60" wordcount="10">
+		<list>apple</list>
+		<list>duddy</list>
+		<list>world</list>
+		<list>xerox</list>
+		<list>aesir</list>
+		<list>azure</list>
+		<list>chive</list>
+		<list>drunk</list>
+		<list>durst</list> 
+		<list>feuar</list>
+		<list>gammy</list> 
+		<list>glued</list> 
+		<list>goofy</list> 
+		<list>mates</list> 
+		<list>medic</list> 
+		<list>pimps</list>
+		<list>plump</list> 
+		<list>scowl</list> 
+		<list>spice</list> 
+		<list>water</list> 
+		<list>zowie</list> 
+		<list>chaff</list> 
+		<list>canny</list> 
+		<list>youse</list> 
+		<list>bossy</list> 
+		<list>birth</list> 
+		<list>necks</list> 
+		<list>nodes</list> 
+		<list>nihil</list> 
+		<list>erase</list>
+		<list>altar</list>
+		<list>lacey</list> 
+		<list>remix</list> 
+		<list>squid</list>
+		<list>trike</list> 
+		<list>unwet</list> 
+		<list>wacko</list> 
+		<list>zebra</list> 
+		<list>glory</list> 
+		<list>dwarf</list> 
+		<list>crony</list> 
+		<list>camel</list> 
+		<list>baths</list> 
+		<list>adapt</list> 
+		<list>micro</list> 
+		<list>ocean</list>
+		<list>party</list> 
+		<list>quota</list> 
+		<list>react</list> 
+		<list>ethos</list> 
+	</difficulty>
+	
+	<difficulty name="Normal" timer="120" wordcount="15">
+		<list>acquit   </list>
+		<list>ataxia   </list>
+		<list>bregma   </list>
+		<list>butter   </list>
+		<list>celebs   </list>
+		<list>muktuk   </list>
+		<list>oocyst   </list>
+		<list>anthrax  </list>
+		<list>baroque  </list>
+		<list>biscuit  </list>
+		<list>purlieu  </list>
+		<list>syzygies </list>
+		<list>tachyons </list>
+		<list>zyzzyvas </list>
+		<list>ziggurat </list>
+		<list>workflow </list>
+		<list>quadric  </list>
+		<list>culinary </list>
+		<list>rodents  </list>
+		<list>sheuchs  </list>
+		<list>macruran </list>
+		<list>yokozuna </list>
+		<list>xylitols </list>
+		<list>redry    </list>
+		<list>oxeye    </list>
+		<list>sagely   </list>
+		<list>towhee   </list>
+		<list>beylik   </list>
+		<list>acacias  </list>
+		<list>neocons  </list>
+		<list>drill    </list>
+		<list>psych    </list>
+		<list>steak    </list>
+		<list>beget    </list>
+		<list>chops    </list>
+		<list>blazes   </list>
+		<list>contra   </list>
+		<list>divine   </list>
+		<list>jalopy   </list>
+		<list>rotten   </list>
+		<list>soybean  </list>
+		<list>tuition  </list>
+		<list>cohorts  </list>
+		<list>breakup  </list>
+		<list>zingers  </list>
+		<list>abacuses </list>
+		<list>symptoms </list>
+		<list>tricorns </list>
+		<list>lacrosse </list>
+		<list>nimbuses </list>
+	</difficulty>
+	
+	<difficulty name="Hard" timer="180" wordcount="20">
+		<list>tensorial     </list>
+		<list>rationale     </list>
+		<list>holystone     </list>
+		<list>brilliant     </list>
+		<list>urogenous     </list>
+		<list>epicotyls     </list>
+		<list>affective     </list>
+		<list>bimonthly     </list>
+		<list>pizzazzes     </list>
+		<list>beggarhood    </list>
+		<list>antimarket    </list>
+		<list>skitterier    </list>
+		<list>tantamount    </list>
+		<list>vermifuges    </list>
+		<list>volvuluses    </list>
+		<list>yesteryear    </list>
+		<list>zwitterion    </list>
+		<list>zygodactyl    </list>
+		<list>complacency   </list>
+		<list>epiphytisms   </list>
+		<list>gelatinized   </list>
+		<list>geosyncline   </list>
+		<list>pantomimist   </list>
+		<list>sorrinesses   </list>
+		<list>percutaneous  </list>
+		<list>philistinism  </list>
+		<list>zooxanthella  </list>
+		<list>ticklishness  </list>
+		<list>myeloblastic  </list>
+		<list>kinnikinnick  </list>
+		<list>eruptible    </list>
+		<list>fecundate    </list>
+		<list>xanthenes    </list>
+		<list>reswallow    </list>
+		<list>subtility    </list>
+		<list>cyclamates   </list>
+		<list>eyeglasses   </list>
+		<list>geomancers   </list>
+		<list>nidifugous   </list>
+		<list>putschists   </list>
+		<list>concurrence  </list>
+		<list>micromanage  </list>
+		<list>retinoscopy  </list>
+		<list>thingamabob  </list>
+		<list>lepidolites  </list>
+		<list>labyrinthian </list>
+		<list>megalomanias </list>
+		<list>unflamboyant </list>
+		<list>womanishness </list>
+		<list>intimateness </list>
+	</difficulty>
+	
+</wordlist>

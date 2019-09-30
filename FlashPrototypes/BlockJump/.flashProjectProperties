@@ -1,0 +1,21 @@
+<projectDescription>
+  <id>1332965539831</id>
+  <name>BlockJump</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Users/Mike/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp>file:///C|/GameDev/_Projects/FlashPrototypes/BlockJump/BlockJump.fla</defaultApp>
+  <rootURI>file:///C|/GameDev/_Projects/FlashPrototypes/BlockJump/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false">
+    <uri label="BlockJump.fla">file:///C|/GameDev/_Projects/FlashPrototypes/BlockJump/BlockJump.fla</uri>
+  </compileList>
+  <recentFiles editable="false">
+    <uri label="Main.as">file:///C|/GameDev/_Projects/FlashPrototypes/BlockJump/Main.as</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

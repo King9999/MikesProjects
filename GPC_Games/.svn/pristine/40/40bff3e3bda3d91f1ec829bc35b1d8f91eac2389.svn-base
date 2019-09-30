@@ -1,0 +1,22 @@
+﻿/* October 2011
+"Trick or Treat" by Haskell (Mike) Murray
+Made for Game Prototype Challenge v9
+
+This class runs the game in its entirety. There shouldn't be too much code written here.
+*/
+
+
+package 
+{
+	import flash.display.MovieClip;
+	public class Main extends MovieClip
+	{
+
+		public function Main() 
+		{
+			// constructor code
+		}
+
+	}
+	
+}

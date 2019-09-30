@@ -1,0 +1,78 @@
+﻿/* This is the superclass for all playable characters in the game. This class contains only what's
+common between all characters. 
+
+candyAmount = amount of candy collected.  Required to win the game.
+cooldown = how much time must pass before ability can be used. time is measured in frames, and there is 
+60 frames per second.
+collectRate = how much candy is collected per second. The Princess can collect 2x more candy. */
+
+package  
+{
+	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.events.Event;
+	
+	public class Player extends MovieClip
+	{
+		protected var _playerName:String;
+		protected var _candyAmount:int;		//total candy
+		protected var _cooldown:int;		//number of frames before ability can be used.
+		protected var _candyTaken:int;		//amount of candy taken from a house per tick.
+		protected var _dropAmount:int;		//amount of candy player drops when hit. default is 5
+		protected var _vx:Number;			//movement on x axis
+		protected var _vy:Number;			//movement on y axis
+		protected var _moveSpeed:Number;
+		protected var _accelX:Number;		//acceleration
+		protected var _accelY:Number;
+		
+
+		public function Player() 
+		{
+			// constructor code
+		}
+		
+		public function GetName():String
+		{
+			return _playerName;
+		}
+		
+		public function AddCandy(amount:int):void
+		{
+			//add candy to the selected player.
+			_candyAmount += amount;
+			if (_candyAmount > 999)
+			{
+				_candyAmount = 999;	//not likely to get to this amount in 3 minutes
+			}
+		}
+		
+		public function DropCandy():void
+		{
+			//drop a number of pieces of candy
+			for (var i = 0; i < _dropAmount; i++)
+			{
+				/* put in code here to display candy dropping on the ground */
+				_candyAmount -= 1;
+				if (_candyAmount < 0)
+				{
+					_candyAmount = 0;
+				}
+			}
+		}
+		
+		public function GetCandyAmount():int
+		{
+			return _candyAmount;
+		}
+		
+		public function GetCandyTaken():int
+		{
+			return _candyTaken;
+		}
+		
+		
+
+	}
+	
+}

@@ -1,0 +1,8 @@
+<Weapon>
+	<name>Broadsword</name>
+	<desc>Common sword with decent power</desc>
+	<price>100</price>
+	<attack>3</attack>
+	<effect>0</effect>
+</Weapon>
+ 

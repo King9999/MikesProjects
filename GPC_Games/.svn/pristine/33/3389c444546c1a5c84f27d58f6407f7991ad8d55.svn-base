@@ -1,0 +1,33 @@
+﻿/* This class is used for collision between itself and the player. If there is collison,
+then the player will start gathering candy. The pads should be placed by the BASE of the houses,
+i.e. in front. */
+
+package  
+{
+	import flash.display.MovieClip;
+	import flash.events.Event;
+	import flash.geom.Rectangle;
+	
+	public class LandingPad extends MovieClip
+	{
+		private var _rect:Rectangle;
+
+		public function LandingPad() 
+		{
+			_rect.x = stage.stageWidth / 2;
+			_rect.y = stage.stageHeight / 2;
+			_rect.width = 200;
+			_rect.height = 200;
+			
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		}
+		
+		function onEnterFrame(event:Event):void
+		{
+			//check for collision between player and box
+			
+		}
+
+	}
+	
+}

@@ -1,0 +1,212 @@
+﻿/* Home Run is a game where you must fill up a meter within the time limit by mashing buttons
+as quickly as you can.  Once time is up, a ball is struck and sent flying. Its distance
+depends on the power meter. */
+
+package  
+{
+	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	import flash.events.Event;
+	import flash.display.DisplayObject;
+	import flash.display.Graphics;
+    import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	
+	
+	public class Main extends MovieClip
+	{
+		//timer variables
+		var _timer:Clock;
+		var _timerText:TextField;
+		var _timerFormat:TextFormat;
+		var _secs:uint = 10;	//clock time
+				
+		var _player:Shape;
+		var _ball:Shape;		//the object that'll go flying
+		var _emptyBar:Shape;	//power gauge. Always fixed
+		var _powerBar:Shape;	//fills up as you mash buttons
+		var _ground:Shape;		//ball should bounce off of this
+		
+		
+		var _pBarWidth:Number = 0;	//increases as buttons are pressed, decreases otherwise
+		
+		
+		//HUD text
+		var _instructionText:TextField;	//tells player what must be done
+		var _barLabel:TextField;		//gauge label
+		var _timeLabel:TextField;		//timer label
+
+		public function Main() 
+		{
+			//timer information
+			_timer = new Clock(_secs);
+			
+			_timerFormat = new TextFormat();
+			_timerFormat.size = 50;
+			_timerFormat.bold = true;
+			_timerFormat.font = "Calibri";
+			
+			_timerText = new TextField();
+			_timerText.defaultTextFormat = _timerFormat;
+			_timerText.textColor = 0x0000F0;
+			_timerText.width = 160;
+			_timerText.height = 80;
+			_timerText.x = 450;
+			_timerText.y = 200;
+			
+			//display time and append zeroes where necessary
+			if (_timer.Seconds() < 10)
+			{
+				_timerText.text = _timer.Minutes() + ":0" + _timer.Seconds() + ":" + _timer.Milliseconds();
+			}
+			else
+			{
+				_timerText.text = _timer.Minutes() + ":" + _timer.Seconds() + ":" + _timer.Milliseconds();
+			}
+			
+						
+			//instruction
+			_instructionText = new TextField();
+
+			_instructionText.textColor = 0x000000;
+			_instructionText.defaultTextFormat = _timerFormat;
+			_instructionText.x = 100;
+			_instructionText.y = 50;
+			_instructionText.width = 800;
+			_instructionText.height = 150;
+			_instructionText.multiline = true;
+			_instructionText.wordWrap = true;
+			_instructionText.text = "Mash the A and D keys to gather power!";
+			
+			//player
+			_player = new Shape();
+			_player.graphics.beginFill(0x0000cc);
+			_player.graphics.drawRect(100, 500, 40, 90);
+			_player.graphics.endFill();
+			
+			//gauge  ****NOTE: The order in which you define shapes matters!****
+			_powerBar = new Shape();
+			_powerBar.graphics.beginFill(0xff9914);	//orange
+			_powerBar.graphics.drawRect(80, 660, 400, 30);
+			_powerBar.graphics.endFill();
+			
+			//empty power gauge
+			_emptyBar = new Shape();
+			_emptyBar.graphics.beginFill(0x000000);
+			_emptyBar.graphics.drawRect(40, 660, 200, 30);
+			_emptyBar.graphics.endFill();
+			
+			
+			
+			//ball
+			_ball = new Shape();
+			_ball.graphics.beginFill(0xcccccc);
+			_ball.graphics.drawCircle(180, 570, 20);
+			_ball.graphics.endFill();
+			
+			//power gauge label
+			_barLabel = new TextField();
+			_barLabel.defaultTextFormat = _timerFormat;
+			_barLabel.text = "POWER";
+			_barLabel.textColor = 0x004400;
+			_barLabel.x = 40;
+			_barLabel.y = 600;
+			_barLabel.width = 200;
+			_barLabel.height = 70;
+			
+
+			//add everything
+			addChild(_timerText);
+			addChild(_instructionText);
+			addChild(_barLabel);
+			
+			
+			addChild(_emptyBar);
+			addChild(_powerBar);
+			
+			
+			addChild(_ball);
+			addChild(_player);
+			
+			
+			
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+		}
+		
+		public function onKeyUp(event:KeyboardEvent):void
+		{
+			/*when the A or D keys are pressed, the power gauge fills up slowly. The gauge 
+			decreases if nothing is pressed.*/
+			
+			switch (event.keyCode)
+			{
+				case Keyboard.A: case Keyboard.D:
+					_pBarWidth += 1.3;
+					if (_pBarWidth > 200)
+					{
+						_pBarWidth = 200;
+					}
+					trace ("Gauge: " + _pBarWidth);
+			}
+		}
+		
+		function onEnterFrame(event:Event):void
+		{
+			
+			//the power gauge continually decreases
+			_pBarWidth -= 0.1;
+			if (_pBarWidth < 0)
+			{
+				_pBarWidth = 0;
+			}
+			
+			//update power gauge
+			_powerBar.width = _pBarWidth;
+			
+			
+			/* Time continually decreases until it reaches 0 or player completes all words. */
+			_timer.Countdown();
+			
+						
+						
+			//update the timer
+			if (_timer.Seconds() < 10 && _timer.Milliseconds() < 10)
+			{
+				_timerText.text = _timer.Minutes() + ":0" + _timer.Seconds() + ":0" + _timer.Milliseconds();
+			}
+			else if (_timer.Seconds() < 10 && _timer.Milliseconds() > 10)
+			{
+				_timerText.text = _timer.Minutes() + ":0" + _timer.Seconds() + ":" + _timer.Milliseconds();
+			}
+			else if (_timer.Seconds() > 10 && _timer.Milliseconds() < 10)
+			{
+				_timerText.text = _timer.Minutes() + ":" + _timer.Seconds() + ":0" + _timer.Milliseconds();
+			}
+			else
+			{
+				_timerText.text = _timer.Minutes() + ":" + _timer.Seconds() + ":" + _timer.Milliseconds();
+			}
+			
+			/* When the timer reaches 0, the ball is struck and sent flying. Calculate how far the ball
+			goes based on the power */
+			if (_timer.TimeUp())
+			{
+				//send the ball flying. The ball will slow down as _pBarWidth decreases each frame.
+				_ball.x += _pBarWidth * 0.25;
+				//_ball.y -= _pBarWidth * 0.05;
+				if (_ball.x > stage.stageWidth)
+				{
+					_ball.x = 0;
+				}
+			}
+		}
+
+	}
+	
+}
