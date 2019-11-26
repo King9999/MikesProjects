@@ -1,0 +1,30 @@
+/*The code for the body sets the default settings for the iframe */
+body 
+{
+	
+	background-image:url('Images/IframeWindow.png');
+	background-repeat:no-repeat;
+	color:rgb(255,255,255);
+	
+}
+
+@font-face
+{
+	font-family:myFont;
+	src:url('smalle.fon');
+}
+p
+{
+	/* text */
+	color:rgb(255,255,255);
+	text-align:center;
+	position:relative;
+	overflow:auto;
+	font-family:myFont, calibri, arial, "Times New Roman";
+	font-size:18px;
+}
+
+img
+{
+	margin-left:5px; /*I added this specifically for the Tile Crusher page */
+}

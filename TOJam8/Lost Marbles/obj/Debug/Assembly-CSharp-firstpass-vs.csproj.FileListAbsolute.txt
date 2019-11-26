@@ -1,0 +1,8 @@
+C:\Users\Mike\Desktop\Lost Marbles\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Mike\Desktop\Lost Marbles\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Mike\Desktop\Lost Marbles\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Mike\Desktop\Lost Marbles\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Mike\Desktop\Lost Marbles\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Mike\Desktop\Lost Marbles\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Mike\Desktop\Lost Marbles\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Mike\Desktop\Lost Marbles\obj\Debug\Assembly-CSharp-firstpass.pdb

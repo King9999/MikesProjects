@@ -1,0 +1,12 @@
+C:\Users\King\source\repos\Item Generator\Item Generator\bin\Debug\Item Generator.exe.config
+C:\Users\King\source\repos\Item Generator\Item Generator\bin\Debug\Item Generator.exe
+C:\Users\King\source\repos\Item Generator\Item Generator\bin\Debug\Item Generator.pdb
+C:\Users\King\source\repos\Item Generator\Item Generator\bin\Debug\Item Generator.exe.CodeAnalysisLog.xml
+C:\Users\King\source\repos\Item Generator\Item Generator\bin\Debug\Item Generator.exe.lastcodeanalysissucceeded
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Debug\Item_Generator.ItemDisplay.resources
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Debug\Item_Generator.ItemGenerator.resources
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Debug\Item_Generator.Properties.Resources.resources
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Debug\Item Generator.csproj.GenerateResource.Cache
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Debug\Item Generator.csproj.CoreCompileInputs.cache
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Debug\Item Generator.exe
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Debug\Item Generator.pdb

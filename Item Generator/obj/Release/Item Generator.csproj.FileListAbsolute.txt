@@ -1,0 +1,10 @@
+C:\Users\King\source\repos\Item Generator\Item Generator\bin\Release\Item Generator.exe.config
+C:\Users\King\source\repos\Item Generator\Item Generator\bin\Release\Item Generator.exe
+C:\Users\King\source\repos\Item Generator\Item Generator\bin\Release\Item Generator.pdb
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Release\Item_Generator.ItemDisplay.resources
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Release\Item_Generator.ItemGenerator.resources
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Release\Item_Generator.Properties.Resources.resources
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Release\Item Generator.csproj.GenerateResource.Cache
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Release\Item Generator.csproj.CoreCompileInputs.cache
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Release\Item Generator.exe
+C:\Users\King\source\repos\Item Generator\Item Generator\obj\Release\Item Generator.pdb

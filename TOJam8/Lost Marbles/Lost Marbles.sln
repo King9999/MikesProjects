@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lost Marbles.Plugins", "Lost Marbles.Plugins.csproj", "{61A87AEC-C289-6353-58F3-35C2BED96E39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lost Marbles", "Lost Marbles.csproj", "{16E1EB7D-A374-03C5-94BD-F684451DAA74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61A87AEC-C289-6353-58F3-35C2BED96E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61A87AEC-C289-6353-58F3-35C2BED96E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61A87AEC-C289-6353-58F3-35C2BED96E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61A87AEC-C289-6353-58F3-35C2BED96E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E1EB7D-A374-03C5-94BD-F684451DAA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E1EB7D-A374-03C5-94BD-F684451DAA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E1EB7D-A374-03C5-94BD-F684451DAA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E1EB7D-A374-03C5-94BD-F684451DAA74}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

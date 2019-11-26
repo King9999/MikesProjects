@@ -1,0 +1,22 @@
+/*The code for the body sets the default settings for the iframe */
+body 
+{
+	
+	background-image:url('Images/IframeWindow.png');
+	background-repeat:no-repeat;
+	color:rgb(255,255,255);
+	
+}
+
+@font-face
+{
+	font-family:myFont;
+	src:url('smalle.fon');
+}
+p
+{
+	/* text */
+	color:rgb(255,255,255);
+	font-family:myFont, calibri, arial, "Times New Roman";
+	font-size:18px;
+}
