@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>InversionEditor</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/images/button_tile.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/button_tile.png</location>
+		</link>
+		<link>
+			<name>src/images/coloricon.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/coloricon.png</location>
+		</link>
+		<link>
+			<name>src/images/debugicon.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/debugicon.png</location>
+		</link>
+		<link>
+			<name>src/images/exiticon.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/exiticon.png</location>
+		</link>
+		<link>
+			<name>src/images/inverticon.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/inverticon.png</location>
+		</link>
+		<link>
+			<name>src/images/origin.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/origin.png</location>
+		</link>
+		<link>
+			<name>src/images/starticon.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/starticon.png</location>
+		</link>
+		<link>
+			<name>src/images/testicon.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/testicon.png</location>
+		</link>
+		<link>
+			<name>src/images/tileicon.png</name>
+			<type>1</type>
+			<location>C:/GameDev/_Projects/Java Projects/InversionEditor/src/images/tileicon.png</location>
+		</link>
+	</linkedResources>
+</projectDescription>
