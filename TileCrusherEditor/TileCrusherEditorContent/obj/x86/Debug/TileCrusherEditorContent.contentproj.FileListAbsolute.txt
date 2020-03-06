@@ -1,0 +1,1 @@
+C:\GameDev\_Projects\TileCrusherEditor\TileCrusherEditorContent\obj\x86\Debug\ResolveAssemblyReference.cache

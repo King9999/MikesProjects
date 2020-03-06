@@ -1,0 +1,26 @@
+﻿<xapCache source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\PuzzleRPG.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="10/13/12 4:50:36 PM">
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\Background.png" archivePath="Background.png" lastWriteTime="5/17/12 10:55:40 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\PhoneGameThumb.png" archivePath="PhoneGameThumb.png" lastWriteTime="5/17/12 10:55:40 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="5/29/12 4:09:24 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="10/13/12 4:50:36 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\PuzzleRPG.dll" archivePath="PuzzleRPG.dll" lastWriteTime="10/13/12 4:50:35 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\blue.xnb" archivePath="Content\Blocks\blue.xnb" lastWriteTime="5/26/12 1:22:05 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\green.xnb" archivePath="Content\Blocks\green.xnb" lastWriteTime="5/26/12 1:22:05 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\shield.xnb" archivePath="Content\Blocks\shield.xnb" lastWriteTime="5/26/12 1:22:05 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\buttonFont.xnb" archivePath="Content\Fonts\buttonFont.xnb" lastWriteTime="5/27/12 10:01:02 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\creditFont.xnb" archivePath="Content\Fonts\creditFont.xnb" lastWriteTime="5/27/12 10:01:02 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\legalFont.xnb" archivePath="Content\Fonts\legalFont.xnb" lastWriteTime="5/27/12 10:01:02 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\screenFont.xnb" archivePath="Content\Fonts\screenFont.xnb" lastWriteTime="5/27/12 10:01:02 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\attack.xnb" archivePath="Content\Blocks\attack.xnb" lastWriteTime="6/01/12 3:59:10 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\red.xnb" archivePath="Content\Blocks\red.xnb" lastWriteTime="6/01/12 3:59:10 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\ScrollBackground.xnb" archivePath="Content\Images\ScrollBackground.xnb" lastWriteTime="6/04/12 9:09:17 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\Button.xnb" archivePath="Content\Images\Button.xnb" lastWriteTime="6/04/12 9:10:04 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\LevelSelectTile.xnb" archivePath="Content\Images\LevelSelectTile.xnb" lastWriteTime="6/08/12 8:51:53 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\tileFont.xnb" archivePath="Content\Fonts\tileFont.xnb" lastWriteTime="6/08/12 8:56:30 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\wellbackground.xnb" archivePath="Content\Images\wellbackground.xnb" lastWriteTime="6/12/12 9:09:43 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\debugFont.xnb" archivePath="Content\Fonts\debugFont.xnb" lastWriteTime="6/13/12 9:10:55 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\multi.xnb" archivePath="Content\Blocks\multi.xnb" lastWriteTime="6/15/12 4:10:45 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\lifebar_empty.xnb" archivePath="Content\Images\lifebar_empty.xnb" lastWriteTime="7/04/12 8:50:03 AM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\lifebar_red.xnb" archivePath="Content\Images\lifebar_red.xnb" lastWriteTime="6/25/12 4:11:26 PM" />
+  <file source="C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\lifebar_solid.xnb" archivePath="Content\Images\lifebar_solid.xnb" lastWriteTime="6/25/12 4:11:26 PM" />
+</xapCache>

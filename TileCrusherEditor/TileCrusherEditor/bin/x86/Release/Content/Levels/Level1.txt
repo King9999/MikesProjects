@@ -1,0 +1,18 @@
+<level>1</level>
+<turnCount>10</turnCount>
+<playerRowPos>1</playerRowPos>
+<playerColPos>3</playerColPos>
+<levelGrid>
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+-1 -1 -1 1 1 -1 -1 -1 -1 -1 
+-1 -1 -1 1 1 -1 -1 -1 -1 -1 
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+</levelGrid>
+<targetGrid>
+0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 
+</targetGrid>

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Blocks\blue.png</Source>
+      <Name>Blocks\blue</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\blue.xnb</Output>
+      <Time>2012-05-19T14:21:44.186388-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Blocks\green.png</Source>
+      <Name>Blocks\green</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\green.xnb</Output>
+      <Time>2012-05-19T14:20:41.1167807-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Blocks\shield.png</Source>
+      <Name>Blocks\shield</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\shield.xnb</Output>
+      <Time>2012-05-19T14:25:47.0082767-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\buttonFont.spritefont</Source>
+      <Name>Fonts\buttonFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\buttonFont.xnb</Output>
+      <Time>2012-05-27T10:00:36.8505371-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\creditFont.spritefont</Source>
+      <Name>Fonts\creditFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\creditFont.xnb</Output>
+      <Time>2012-05-27T10:00:36.8605377-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\legalFont.spritefont</Source>
+      <Name>Fonts\legalFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\legalFont.xnb</Output>
+      <Time>2012-05-27T10:00:36.8795388-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\screenFont.spritefont</Source>
+      <Name>Fonts\screenFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\screenFont.xnb</Output>
+      <Time>2012-05-27T10:00:36.8985399-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Blocks\attack.png</Source>
+      <Name>Blocks\attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\attack.xnb</Output>
+      <Time>2012-06-01T15:54:52.174632-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Blocks\red.png</Source>
+      <Name>Blocks\red</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\red.xnb</Output>
+      <Time>2012-05-19T14:18:45.5801724-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\ScrollBackground .png</Source>
+      <Name>Images\ScrollBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\ScrollBackground.xnb</Output>
+      <Time>2012-06-04T09:09:11.2762927-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Button.png</Source>
+      <Name>Images\Button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\Button.xnb</Output>
+      <Time>2012-06-04T09:10:01.6831758-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\LevelSelectTile.png</Source>
+      <Name>Images\LevelSelectTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\LevelSelectTile.xnb</Output>
+      <Time>2012-06-05T16:16:58.730758-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\tileFont.spritefont</Source>
+      <Name>Fonts\tileFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\tileFont.xnb</Output>
+      <Time>2012-06-08T08:56:24.0838273-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\wellbackground.png</Source>
+      <Name>Images\wellbackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\wellbackground.xnb</Output>
+      <Time>2012-06-12T09:02:16.8076122-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\debugFont.spritefont</Source>
+      <Name>Fonts\debugFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Fonts\debugFont.xnb</Output>
+      <Time>2012-06-13T09:08:23.9480231-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Blocks\multi.png</Source>
+      <Name>Blocks\multi</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Blocks\multi.xnb</Output>
+      <Time>2012-06-15T16:09:35.6407799-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\lifebar_empty.png</Source>
+      <Name>Images\lifebar_empty</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\lifebar_empty.xnb</Output>
+      <Time>2012-07-04T08:49:40.8356471-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\lifebar_red.png</Source>
+      <Name>Images\lifebar_red</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\lifebar_red.xnb</Output>
+      <Time>2012-06-25T16:05:00.1134568-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\lifebar_solid.png</Source>
+      <Name>Images\lifebar_solid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\Images\lifebar_solid.xnb</Output>
+      <Time>2012-06-25T16:04:16.7239751-04:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{AC60BE57-EFD1-46F5-B4A3-5671BB0FE1A2}</ContentProjectGUID>
+      <TargetPlatform>WindowsPhone</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPGContent\</RootDirectory>
+      <LoggerRootDirectory>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\obj\Windows Phone\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\GameDev\_Projects\PuzzleRPG\PuzzleRPG\bin\Windows Phone\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2011-10-30T10:17:45.9872948-04:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
