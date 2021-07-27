@@ -13,7 +13,7 @@ int main()
 	bool endGame = false;
 	bool reShuffle = false;
 
-	Deck d;
+	Deck d; 
 	d.getPlayers();
 	d.Shuffle();
 
