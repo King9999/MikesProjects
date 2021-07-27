@@ -13,7 +13,7 @@ Global
 		{613BF964-4876-D16C-FE09-E1329E20AB5E}.Debug|Win32.Build.0 = Debug|Win32
 		{613BF964-4876-D16C-FE09-E1329E20AB5E}.Release|Win32.ActiveCfg = Release|Win32
 		{613BF964-4876-D16C-FE09-E1329E20AB5E}.Release|Win32.Build.0 = Release|Win32
-	EndGlobalSection
+	EndGlobalSection 
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
